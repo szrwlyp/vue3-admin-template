@@ -8,7 +8,7 @@ import {
   nextTick,
   computed,
 } from "vue";
-import { of, skip, take, toArray, map, fromEvent, debounceTime } from "rxjs";
+import { of, skip, take, toArray, map } from "rxjs";
 import { Delete, Plus } from "@element-plus/icons-vue";
 import Table from "@/components/tableComp/index.vue";
 import Pagination from "@/components/paginationComp.vue";
@@ -108,6 +108,7 @@ const formItemArr = reactive<Array<formItemArrTypes>>([
       placeholder: "请输入订单ID",
     },
   },
+
   {
     label: "订单类型",
     prop: "order_type",
@@ -239,6 +240,8 @@ if (!set_orderData.value.length) {
 
 // 表格订单数据
 let tableData = ref<Array<any>>([]);
+
+const tableRef = ref();
 
 const tableCloumnArr: Array<TableCloumnArrTypes> = reactive([
   {
@@ -408,6 +411,7 @@ interface addOrEditDataType {
   checkbox: Array<any>;
   remarks: string;
   goods_img: Array<{ url: string } | string>;
+  goods_class: Array<any>;
 }
 const addOrEditData = ref<addOrEditDataType>({
   order_id: "",
@@ -421,6 +425,7 @@ const addOrEditData = ref<addOrEditDataType>({
   checkbox: [1, 2],
   remarks: "",
   goods_img: [],
+  goods_class: ["guide", "disciplines", "consistency"],
 });
 
 // 表单校验
@@ -520,6 +525,68 @@ const addOrEditItemArr = reactive<Array<formItemArrTypes>>([
       // type: "text",
       // placeholder: "请输入商品名称",
       width: "300px",
+    },
+  },
+  {
+    label: "商品分类",
+    prop: "goods_class",
+    model: "goods_class",
+    component: "cascader",
+    // disableEditData: true,
+    cascaderCompOptions: {
+      width: "300px",
+      placeholder: "请输入商品分类",
+      cascaderProps: { expandTrigger: "hover" },
+      clearable: true,
+      // showAllLevels: false,
+      filterable: true,
+      // emitChangeEvent: "emitChange",
+      // emitExpandChangeEvent: "emitExpandChange",
+      options: [
+        {
+          value: "guide",
+          label: "Guide",
+          children: [
+            {
+              value: "disciplines",
+              label: "Disciplines",
+              // disabled: true,
+              children: [
+                {
+                  value: "consistency",
+                  label: "Consistency",
+                },
+                {
+                  value: "feedback",
+                  label: "Feedback",
+                },
+                {
+                  value: "efficiency",
+                  label: "Efficiency",
+                },
+                {
+                  value: "controllability",
+                  label: "Controllability",
+                },
+              ],
+            },
+            {
+              value: "navigation",
+              label: "Navigation",
+              children: [
+                {
+                  value: "side nav",
+                  label: "Side Navigation",
+                },
+                {
+                  value: "top nav",
+                  label: "Top Navigation",
+                },
+              ],
+            },
+          ],
+        },
+      ],
     },
   },
   {
@@ -658,39 +725,11 @@ const handleDialogConfirm = async () => {
   );
 };
 
-/**
- * table设置动态高度值
- * 113 是headerBar，tabbar两个组件的高度
- */
-const tableHeight = ref<number>(0);
-const formRef = ref();
-const tableRef = ref();
-const operatorRef = ref();
-const paginationRef = ref();
-const setTableHeight = async () => {
-  tableHeight.value =
-    formRef.value.$el.clientHeight +
-    operatorRef.value.$el.clientHeight +
-    paginationRef.value.$el.clientHeight +
-    113;
-};
-const onWindowReSize$ = fromEvent(window, "resize")
-  .pipe(debounceTime(300))
-  .subscribe({
-    next: () => {
-      setTableHeight();
-    },
-  });
-
 onMounted(() => {
   handleTableData();
-
-  setTableHeight();
 });
 
-onUnmounted(() => {
-  onWindowReSize$.unsubscribe();
-});
+onUnmounted(() => {});
 
 /**
  * 遇到的问题
@@ -703,7 +742,6 @@ onUnmounted(() => {
   <!-- <div class="template-flex" ref="parentComponent"> -->
   <!-- 搜索操作 -->
   <Form
-    ref="formRef"
     :inline="true"
     :form-item-arr="formItemArr"
     :form-data="searchFormData"
@@ -715,7 +753,7 @@ onUnmounted(() => {
   <Divider />
 
   <!-- 数据操作 -->
-  <el-row ref="operatorRef" class="mb-4" style="padding: 18px 0 10px 0">
+  <el-row class="mb-4" style="padding: 18px 0 10px 0">
     <el-button type="primary" :icon="Plus" @click="addData">新增</el-button>
     <el-button
       type="danger"
@@ -729,19 +767,14 @@ onUnmounted(() => {
   <!-- 数据表格 -->
   <Table
     ref="tableRef"
-    :height="tableHeight"
     :table-column-arr="tableCloumnArr"
     :table-data="tableData"
-    @emit-selection-change="handleSelectionChange"
-    @emit-edit-operation="handleEditOperation"
-    @emit-delete-operation="handleDeleteOperation"
-  />
-
-  <Pagination
-    ref="paginationRef"
     :total="pagingTotal"
     :currentPage="pagingCurrentPage"
     :pageSize="pagingPageSize"
+    @emit-selection-change="handleSelectionChange"
+    @emit-edit-operation="handleEditOperation"
+    @emit-delete-operation="handleDeleteOperation"
     @emit-pagination-current-change="handleCurrentChange"
     @emit-pagination-size-change="handleSizeChange"
   />

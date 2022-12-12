@@ -323,11 +323,11 @@ const getTableData = () => {
   );
   console.log(params);
 
-  U_ElLoadingFun({
-    target: tableRef.value.$el,
-    text: "数据加载中...",
-    background: "rgba(255, 255, 255, 0.9)",
-  });
+  // U_ElLoadingFun({
+  //   target: tableRef.value.$el,
+  //   text: "数据加载中...",
+  //   background: "rgba(255, 255, 255, 0.9)",
+  // });
 
   getJournalData(params).subscribe({
     next: (res) => {
@@ -336,7 +336,7 @@ const getTableData = () => {
       tableData.value = data?.logs ?? [];
       pagingTotal.value = data?.count ?? 0;
       mainScrollTop();
-      U_ElLoadingInstance?.close();
+      // U_ElLoadingInstance?.close();
     },
   });
 };
@@ -345,29 +345,7 @@ const handleSelectionChange = () => {};
 const handleEditOperation = () => {};
 const handleDeleteOperation = () => {};
 
-/**
- * table设置动态高度值
- * 113 是headerBar，tabbar两个组件的高度
- */
-const tableHeight = ref<number>(0);
-const formRef = ref();
 const tableRef = ref();
-const operatorRef = ref();
-const paginationRef = ref();
-const setTableHeight = async () => {
-  tableHeight.value =
-    formRef.value.$el.clientHeight +
-    operatorRef.value.$el.clientHeight +
-    paginationRef.value.$el.clientHeight +
-    113;
-};
-const onWindowReSize$ = fromEvent(window, "resize")
-  .pipe(debounceTime(300))
-  .subscribe({
-    next: () => {
-      setTableHeight();
-    },
-  });
 
 /******************************分页****************************/
 // 总条数
@@ -392,12 +370,9 @@ const handleSizeChange = (val: number) => {
 
 onMounted(() => {
   getTableData();
-  setTableHeight();
 });
 
-onUnmounted(() => {
-  onWindowReSize$.unsubscribe();
-});
+onUnmounted(() => {});
 </script>
 
 <template>
@@ -426,24 +401,19 @@ onUnmounted(() => {
     >
   </el-row>
   <!-- 数据表格 -->
-  <Table
+  <!-- <Table
     ref="tableRef"
-    :height="tableHeight"
     :table-column-arr="tableCloumnArr"
     :table-data="tableData"
-    @emit-selection-change="handleSelectionChange"
-    @emit-edit-operation="handleEditOperation"
-    @emit-delete-operation="handleDeleteOperation"
-  />
-
-  <Pagination
-    ref="paginationRef"
     :total="pagingTotal"
     :currentPage="pagingCurrentPage"
     :pageSize="pagingPageSize"
+    @emit-selection-change="handleSelectionChange"
+    @emit-edit-operation="handleEditOperation"
+    @emit-delete-operation="handleDeleteOperation"
     @emit-pagination-current-change="handleCurrentChange"
     @emit-pagination-size-change="handleSizeChange"
-  />
+  /> -->
 </template>
 
 <style lang="scss" scoped></style>

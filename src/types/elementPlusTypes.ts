@@ -81,7 +81,8 @@ type component =
   | "button"
   | "switch"
   | "checkbox"
-  | "upload";
+  | "upload"
+  | "cascader";
 export interface formItemArrTypes {
   label?: string;
   prop: string;
@@ -95,6 +96,7 @@ export interface formItemArrTypes {
   switchCompOptions?: SwitchCompOptions;
   checkboxCompOptions?: CheckboxCompOptions;
   uploadCompOptions?: UploadCompOptions;
+  cascaderCompOptions?: CascaderCompOptions;
 }
 
 /**
@@ -103,7 +105,7 @@ export interface formItemArrTypes {
  * @param maxlength 最大输入长度
  * @param inputSlot 复合类型插槽
  * @param inputSlotContent 插槽内容
- * @param inputEmitEvent emit事件
+ * @param inputKeyupEnterEvent 键盘回车事件
  * @param size 输入框尺寸，只在 type 不为 'textarea' 时有效
  */
 type inputType = "text" | "textarea" | "password";
@@ -118,10 +120,11 @@ export interface InputCompOptions {
   maxlength?: string | number;
   inputSlot?: string;
   inputSlotContent?: string | Array<SearchType>;
-  inputEmitEvent?: "emitTest" | "emitSubmitButton";
+  inputKeyupEnterEvent?: "emitSubmitButton";
   size?: string;
   autosize?: boolean | AutoSize;
   showWordLimit?: boolean;
+  // inputKeyupEnterEvent
 }
 
 /**
@@ -214,6 +217,58 @@ export interface CheckboxCompOptions {
  */
 export interface UploadCompOptions {
   width?: string;
+}
+
+/**
+ * 级联（cascader）组件选项配置
+ * @param options 可选项数据源，键名可通过 Props 属性配置
+ * @param placeholder 输入框占位文本
+ * @param width 宽度
+ * @param cascaderProps 配置选项
+ * @param clearable 是否支持清空选项
+ * @param showAllLevels 输入框中是否显示选中值的完整路径
+ * @param filterable 该选项是否可以被搜索
+ */
+export interface CascaderCompOptions {
+  options: Array<optionsType>;
+  placeholder?: string;
+  width: string;
+  cascaderProps: PropsType;
+  clearable?: boolean;
+  showAllLevels?: boolean;
+  filterable?: boolean;
+  size?: "large" | "small" | "default";
+  emitChangeEvent?: "emitChange";
+  emitExpandChangeEvent?: "emitExpandChange";
+}
+
+interface optionsType {
+  value: string;
+  label: string;
+  children: Array<any>;
+}
+/**
+ * 级联（cascader）props配置
+ * @param expandTrigger 次级菜单的展开方式
+ * @param checkStrictly 是否严格的遵守父子节点不互相关联
+ * @param emitPath 在选中节点改变时，是否返回由该节点所在的各级菜单的值所组成的数组，若设置 false，则只返回该节点的值
+ * @param multiple 是否多选
+ * @param lazy 是否动态加载子节点，需与 lazyLoad 方法结合使用
+ * @param value 指定选项的值为选项对象的某个属性值
+ * @param label 指定选项标签为选项对象的某个属性值
+ * @param children 指定选项的子选项为选项对象的某个属性值
+ * @param disabled 指定选项的禁用为选项对象的某个属性值
+ */
+interface PropsType {
+  expandTrigger?: "click" | "hover";
+  checkStrictly?: boolean;
+  emitPath?: boolean;
+  multiple?: boolean;
+  lazy?: boolean;
+  value?: string;
+  label?: string;
+  children?: string;
+  disabled?: string;
 }
 
 /**

@@ -8,6 +8,7 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     ButtonFormat: typeof import('./src/components/tableComp/buttonFormat.vue')['default']
+    CascaderComp: typeof import('./src/components/formComp/comp/cascaderComp.vue')['default']
     copy: typeof import('./src/components/publicTable/imageFormat copy.vue')['default']
     DateFormat: typeof import('./src/components/tableComp/dateFormat.vue')['default']
     DialogComp: typeof import('./src/components/dialogComp/index.vue')['default']
@@ -18,6 +19,8 @@ declare module '@vue/runtime-core' {
     ElBreadcrumbItem: typeof import('element-plus/es')['ElBreadcrumbItem']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElButtonComp: typeof import('./src/components/formComp/comp/elButtonComp.vue')['default']
+    ElCascader: typeof import('element-plus/es')['ElCascader']
+    ElCascaderComp: typeof import('./src/components/elementPlusComp/elCascaderComp.vue')['default']
     ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
     ElCheckboxComp: typeof import('./src/components/formComp/comp/elCheckboxComp.vue')['default']
     ElCheckboxGroup: typeof import('element-plus/es')['ElCheckboxGroup']

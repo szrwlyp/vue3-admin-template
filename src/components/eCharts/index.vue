@@ -21,6 +21,8 @@ import {
   DatasetComponentOption,
   // 内置数据转换器组件 (filter, sort)
   TransformComponent,
+  LegendComponent,
+  ToolboxComponent,
 } from "echarts/components";
 import { LabelLayout, UniversalTransition } from "echarts/features";
 import { CanvasRenderer } from "echarts/renderers";
@@ -48,6 +50,8 @@ echarts.use([
   LabelLayout,
   UniversalTransition,
   CanvasRenderer,
+  LegendComponent,
+  ToolboxComponent,
 ]);
 
 /**

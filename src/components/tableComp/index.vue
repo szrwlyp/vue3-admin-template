@@ -8,25 +8,25 @@ import {
   onUnmounted,
   nextTick,
 } from "vue";
-import { Delete, Edit } from "@element-plus/icons-vue";
 import { deepClone } from "@/utils/index";
 import type { TableCloumnArrTypes } from "@/types/elementPlusTypes";
 import imageFormat from "./imageFormat.vue";
 import dateFormat from "./dateFormat.vue";
 import typeFormat from "./typeFormat.vue";
 import buttonFormat from "./buttonFormat.vue";
-import { myTableScrollTop$ } from "@/observable/subjects/subject";
+import { of, skip, take, toArray, map, fromEvent, debounceTime } from "rxjs";
 
 /**
  * Props
- * @param height table动态高度
  * @param tableData table数据
  * @param tableColumnArr table列配置数组
  */
 interface Props {
-  height: number;
   tableData: Array<any>;
   tableColumnArr: Array<TableCloumnArrTypes>;
+  total: number;
+  currentPage: number;
+  pageSize: number;
 }
 const props = defineProps<Props>();
 
@@ -39,6 +39,8 @@ const tableColumnArrData = ref<Array<TableCloumnArrTypes>>(
 // console.log(props.tableColumnArr);
 // console.log(tableColumnArrData.value);
 
+const tableHeight = ref<number>(0);
+
 // 是否禁用表格操作按钮
 const isDisabledOperation = ref<boolean>(false);
 
@@ -47,6 +49,8 @@ const emits = defineEmits([
   "emitSelectionChange",
   "emitEditOperation",
   "emitDeleteOperation",
+  "emitPaginationCurrentChange",
+  "emitPaginationSizeChange",
 ]);
 
 /*************************** 表格 ***************************/
@@ -88,25 +92,43 @@ const componentName = computed(() => (componentName: any) => {
   return componentMap.get(componentName)?.tabComp;
 });
 
-// table是否滚动到顶部
-const tableScrollTop$ = myTableScrollTop$.subscribe({
-  next: (res) => {
-    console.warn("myTableScrollTop$", res);
+/***************************************************** 分页 *********************************************/
+const paginationRef = ref();
+// table数据总条数
+// const total = toRefs(props.tableData);
+// page-size 改变时触发
+const paginationSizeChange = (val: number) => {
+  emits("emitPaginationSizeChange", val);
+};
+// current-page 改变时触发
+const paginationCurrentChange = (val: number) => {
+  tableRef.value.setScrollTop(0);
+  emits("emitPaginationCurrentChange", val);
+};
 
-    res && tableRef.value.setScrollTop(0);
-  },
+// 动态设置表格的高度
+const setTableHeight = () => {
+  let tableTop = tableRef.value.$el.getBoundingClientRect().top;
+  tableHeight.value = tableTop + paginationRef.value.clientHeight;
+};
+
+// 监听窗口大小改变事件
+const onWindowReSize$ = fromEvent(window, "resize")
+  .pipe(debounceTime(300))
+  .subscribe({
+    next: () => {
+      setTableHeight();
+    },
+  });
+
+onMounted(() => {
+  setTableHeight();
 });
-
-onMounted(() => {});
 
 onUnmounted(() => {
   // 取消订阅
-  tableScrollTop$.unsubscribe();
+  onWindowReSize$.unsubscribe();
 });
-
-const test = (index: number, row: any) => {
-  console.log(row);
-};
 </script>
 
 <template>
@@ -114,7 +136,7 @@ const test = (index: number, row: any) => {
     :data="tableData"
     ref="tableRef"
     style="width: 100%"
-    :max-height="'calc(100vh - ' + height + 'px)'"
+    :max-height="'calc(100vh - ' + tableHeight + 'px)'"
     table-layout="fixed"
     :header-cell-style="{
       background: '#eceff3',
@@ -145,32 +167,28 @@ const test = (index: number, row: any) => {
         </template>
       </el-table-column>
     </template>
-
-    <!-- <el-table-column label="操作">
-      <template #default="scope">
-        <el-button
-          size="large"
-          type="primary"
-          :icon="Edit"
-          :disabled="isDisabledOperation"
-          circle
-          @click="editOperation(scope.$index, scope.row)"
-        ></el-button>
-        <el-button
-          size="large"
-          type="danger"
-          :icon="Delete"
-          :disabled="isDisabledOperation"
-          circle
-          @click="deleteOperation(scope.$index, scope.row)"
-        ></el-button>
-      </template>
-    </el-table-column> -->
   </el-table>
+  <div class="table-pagination" ref="paginationRef">
+    <el-pagination
+      :model-value:current-page="currentPage"
+      :model-value:page-size="pageSize"
+      background
+      :page-sizes="[10, 50, 100, 200]"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="total"
+      @size-change="paginationSizeChange"
+      @current-change="paginationCurrentChange"
+    />
+  </div>
 </template>
 
 <style lang="scss" scoped>
 :deep(.el-button > span:empty) {
   display: none;
+}
+.table-pagination {
+  padding: 18px 0;
+  display: flex;
+  justify-content: center;
 }
 </style>

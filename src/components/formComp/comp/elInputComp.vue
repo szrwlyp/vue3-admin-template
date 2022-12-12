@@ -24,13 +24,13 @@ let {
   maxlength,
   inputSlot,
   inputSlotContent,
-  inputEmitEvent,
+  inputKeyupEnterEvent,
   size,
   autosize,
   showWordLimit,
 } = toRefs(props.formItemData.inputCompOptions as InputCompOptions);
 
-const emits = defineEmits(["emitSubmitButton", "emitTest"]);
+const emits = defineEmits(["emitSubmitButton"]);
 
 /******************************************复合下拉框**************************************** */
 const inputSlotRef = ref<string>(inputSlot?.value ?? "");
@@ -76,6 +76,11 @@ const slotContent = computed(() => {
   }
   return slotStr;
 });
+
+// 监听键盘回车事件
+const handleKeyupEnter = () => {
+  inputKeyupEnterEvent?.value && emits(inputKeyupEnterEvent?.value);
+};
 </script>
 
 <template>
@@ -91,7 +96,7 @@ const slotContent = computed(() => {
       :size="size"
       :autosize="autosize"
       :show-word-limit="showWordLimit"
-      @keyup.enter="emits(inputEmitEvent ?? 'emitTest')"
+      @keyup.enter="handleKeyupEnter"
     >
       <!-- clearable -->
       <template v-if="inputSlotRef && inputSlotContentRef" #[inputSlotRef]>
