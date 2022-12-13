@@ -10,7 +10,10 @@ import {
   nextTick,
 } from "vue";
 import { deepClone } from "@/utils/index";
-import type { TableCloumnArrTypes } from "@/types/elementPlusTypes";
+import type {
+  TableCloumnArrTypes,
+  TableConfig,
+} from "@/types/elementPlusTypes";
 import imageFormat from "./imageFormat.vue";
 import dateFormat from "./dateFormat.vue";
 import typeFormat from "./typeFormat.vue";
@@ -25,6 +28,7 @@ import { of, skip, take, toArray, map, fromEvent, debounceTime } from "rxjs";
  */
 interface Props {
   tableData: Array<any>;
+  tableOptions: TableConfig;
   tableColumnArr: Array<TableCloumnArrTypes>;
   pagination: Pagination;
 }
@@ -40,6 +44,18 @@ interface Pagination {
   pageSize: number;
 }
 const props = defineProps<Props>();
+
+// 配置table
+const {
+  stripe,
+  headerCellStyle,
+  highlightCurrentRow,
+  tableLayout,
+  border,
+  rowClassName,
+  headerRowClassName,
+  headerRowStyle,
+} = toRefs(props.tableOptions);
 
 // 分页
 const { total, currentPage, pageSize } = toRefs(props.pagination);
@@ -143,22 +159,52 @@ onUnmounted(() => {
   // 取消订阅
   onWindowReSize$.unsubscribe();
 });
+
+// const rowClassName = ({
+//   row,
+//   rowIndex,
+// }: {
+//   row: any;
+//   rowIndex: number;
+// }) => {
+//   console.log(row);
+//   console.log(rowIndex);
+//   switch (rowIndex) {
+//     case 1:
+//       return "warning-row";
+//     case 3:
+//       return "success-row";
+//     case 5:
+//       return "danger-row";
+//     case 7:
+//       return "info-row";
+//     default:
+//       return "";
+//   }
+// };
 </script>
 
 <template>
+  <!-- :header-cell-style="{
+      background: '#eceff3',
+      color: '#000000',
+      'text-align': 'center',
+    }"
+    :cell-style="{ 'text-align': 'center' }" -->
   <el-table
     :data="tableData"
     ref="tableRef"
     id="elTable"
     style="width: 100%"
+    :stripe="stripe"
+    :border="border"
+    :header-cell-style="headerCellStyle"
+    :highlight-current-row="highlightCurrentRow"
     :max-height="'calc(100vh - ' + tableHeight + 'px)'"
-    table-layout="fixed"
-    :header-cell-style="{
-      background: '#eceff3',
-      color: '#000000',
-      'text-align': 'center',
-    }"
-    :cell-style="{ 'text-align': 'center' }"
+    :table-layout="tableLayout"
+    :row-class-name="rowClassName"
+    :header-row-style="headerRowStyle"
+    :header-row-class-name="headerRowClassName"
     @selection-change="selectionChange"
   >
     <el-table-column type="selection" width="55" />
@@ -167,8 +213,26 @@ onUnmounted(() => {
         v-if="!item?.isChange"
         :prop="item.prop"
         :label="item.label"
-      />
-      <el-table-column v-else :label="item.label">
+        :align="item.align"
+        :fixed="item.fixed"
+      >
+        <template v-if="item.children">
+          <template v-for="(c_item, c_index) in item.children" :key="c_index">
+            <el-table-column
+              :prop="c_item.prop"
+              :label="c_item.label"
+              :align="c_item.align"
+              :fixed="c_item.fixed"
+            ></el-table-column>
+          </template>
+        </template>
+      </el-table-column>
+      <el-table-column
+        v-else
+        :label="item.label"
+        :align="item.align"
+        :fixed="item.fixed"
+      >
         <template #default="scope">
           <div>
             <component
@@ -205,5 +269,25 @@ onUnmounted(() => {
   padding: 18px 0;
   display: flex;
   justify-content: center;
+}
+
+:deep(.aaa) {
+  background: red;
+}
+
+/**
+ * 表格行状态
+ */
+:deep(.warning-row) {
+  --el-table-tr-bg-color: var(--el-color-warning-light-5);
+}
+:deep(.success-row) {
+  --el-table-tr-bg-color: var(--el-color-success-light-5);
+}
+:deep(.danger-row) {
+  --el-table-tr-bg-color: var(--el-color-danger-light-5);
+}
+:deep(.info-row) {
+  --el-table-tr-bg-color: var(--el-color-info-light-5);
 }
 </style>

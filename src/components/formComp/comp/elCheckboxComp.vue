@@ -2,11 +2,11 @@
 import { toRefs, onMounted } from "vue";
 import type {
   CheckboxCompOptions,
-  formItemArrTypes,
+  FormItemArrTypes,
 } from "@/types/elementPlusTypes";
 
 interface Props {
-  formItemData: formItemArrTypes;
+  formItemData: FormItemArrTypes;
   formModel: any;
 }
 const props = withDefaults(defineProps<Props>(), {});

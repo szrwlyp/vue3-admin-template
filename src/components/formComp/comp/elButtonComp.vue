@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { toRefs } from "vue";
 import type {
-  formItemArrTypes,
+  FormItemArrTypes,
   ButtonCompOptions,
 } from "@/types/elementPlusTypes";
 // import { Search, Refresh } from "@element-plus/icons-vue";
 interface Props {
-  formItemData: formItemArrTypes;
+  formItemData: FormItemArrTypes;
   formModel: any;
 }
 const props = withDefaults(defineProps<Props>(), {});

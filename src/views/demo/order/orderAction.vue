@@ -26,11 +26,12 @@ import {
   tableLoadingInstance,
   tableLoading,
 } from "@/utils/elementPlus";
-import type { dialogHandleType } from "@/types/elementPlusTypes";
+import type { DialogHandleType } from "@/types/elementPlusTypes";
 import {
   tableCloumnConfigArr,
   formItemConfigArr,
   searchFormTypeConfig,
+  tableConfig,
 } from "@/compConfig/demo/orderActiveConfig";
 
 // 依赖注入
@@ -70,6 +71,8 @@ const addData = () => {};
 
 let tableData = ref<Array<any>>([]);
 const tableCloumnArr = reactive(tableCloumnConfigArr);
+
+const tableConfigOptions = reactive(tableConfig);
 const getTableData = () => {
   let params = Object.assign(
     {
@@ -175,6 +178,7 @@ onUnmounted(() => {});
   <Table
     :table-column-arr="tableCloumnArr"
     :table-data="tableData"
+    :table-options="tableConfigOptions"
     :pagination="pagination"
     @emit-selection-change="handleSelectionChange"
     @emit-edit-operation="handleEditOperation"

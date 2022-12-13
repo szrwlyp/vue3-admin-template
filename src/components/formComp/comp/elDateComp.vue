@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { toRefs } from "vue";
 import type {
-  formItemArrTypes,
+  FormItemArrTypes,
   DateCompOptions,
 } from "@/types/elementPlusTypes";
 interface Props {
-  formItemData: formItemArrTypes;
+  formItemData: FormItemArrTypes;
   formModel: any;
 }
 const props = withDefaults(defineProps<Props>(), {});

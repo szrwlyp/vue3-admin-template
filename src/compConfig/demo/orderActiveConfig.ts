@@ -1,9 +1,10 @@
 import type {
-  formItemArrTypes,
+  FormItemArrTypes,
   SearchType,
-  dialogHandleType,
+  DialogHandleType,
+  TableCloumnArrTypes,
+  TableConfig,
 } from "@/types/elementPlusTypes";
-import type { TableCloumnArrTypes } from "@/types/elementPlusTypes";
 
 /**
  * 表格列数据标题配置
@@ -12,51 +13,78 @@ export const tableCloumnConfigArr: Array<TableCloumnArrTypes> = [
   {
     prop: "openid",
     label: "openid",
+    align: "center",
+    // fixed: "left",
   },
   {
     prop: "headUrl",
     label: "用户头像",
     isChange: true,
     component: "imageFormat",
+    align: "center",
   },
   {
     prop: "name",
     label: "用户昵称",
+    align: "center",
   },
   {
     prop: "type",
     label: "操作类型",
     isChange: true,
     component: "typeFormat",
+    align: "center",
   },
   {
     prop: "duration",
     label: "访问时长",
+    align: "center",
   },
   {
     prop: "time",
     label: "访问时间",
     isChange: true,
     component: "dateFormat",
+    align: "center",
   },
   {
     prop: "page",
     label: "访问页面",
+    align: "center",
   },
   {
     prop: "province",
     label: "访问地区",
+    align: "center",
+    // children: [
+    //   {
+    //     prop: "province",
+    //     label: "省",
+    //     align: "center",
+    //   },
+    //   {
+    //     prop: "city",
+    //     label: "市",
+    //     align: "center",
+    //   },
+    //   {
+    //     prop: "region",
+    //     label: "区",
+    //     align: "center",
+    //   },
+    // ],
   },
   {
     prop: "log",
     label: "日志",
+    align: "center",
   },
 ];
 
 /**
  * 表单项目配置
  */
-export const formItemConfigArr: Array<formItemArrTypes> = [
+export const formItemConfigArr: Array<FormItemArrTypes> = [
   {
     label: "用户昵称",
     prop: "name",
@@ -253,3 +281,33 @@ export const searchFormTypeConfig: Array<SearchType> = [
     label: "小薇简报页",
   },
 ];
+
+/**
+ * 表格配置
+ */
+export const tableConfig: TableConfig = {
+  stripe: false,
+  headerCellStyle: {
+    background: "#eceff3",
+    color: "#000000",
+  },
+  // headerRowClassName: "aaa",
+  // headerRowStyle: { background: "#eceff3", color: "#000000" },
+  highlightCurrentRow: false,
+  tableLayout: "fixed",
+  // border: true,
+  rowClassName: ({ row, rowIndex }: { row: any; rowIndex: number }) => {
+    switch (rowIndex) {
+      case 1:
+        return "warning-row";
+      case 3:
+        return "success-row";
+      case 5:
+        return "danger-row";
+      case 7:
+        return "info-row";
+      default:
+        return "";
+    }
+  },
+};

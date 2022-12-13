@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { ref, computed, watch, toRefs } from "vue";
 import type {
-  formItemArrTypes,
+  FormItemArrTypes,
   SearchType,
   InputCompOptions,
 } from "@/types/elementPlusTypes";
 
 interface Props {
-  formItemData: formItemArrTypes;
+  formItemData: FormItemArrTypes;
   formModel: any;
 }
 const props = withDefaults(defineProps<Props>(), {});

@@ -14,7 +14,7 @@ import Table from "@/components/tableComp/index.vue";
 import Form from "@/components/formComp/index.vue";
 import Divider from "@/components/dividerComp.vue";
 import Dialog from "@/components/dialogComp/index.vue";
-import type { dialogHandleType } from "@/types/elementPlusTypes";
+import type { DialogHandleType } from "@/types/elementPlusTypes";
 import { orderData } from "./data";
 import {
   mainScrollTop,
@@ -193,7 +193,7 @@ const handleTableData = () => {
 
 /***************************************** dialog对话框 **************************************/
 const dialogVisible = ref(false);
-const dialogOperation = ref<dialogHandleType>();
+const dialogOperation = ref<DialogHandleType>();
 const dialogFormRef = ref();
 
 interface addOrEditDataType {

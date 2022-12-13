@@ -3,7 +3,7 @@ import { ref, toRefs, computed, onMounted } from "vue";
 import { Plus } from "@element-plus/icons-vue";
 import type {
   UploadCompOptions,
-  formItemArrTypes,
+  FormItemArrTypes,
 } from "@/types/elementPlusTypes";
 import type {
   UploadProps,
@@ -17,7 +17,7 @@ import { storeToRefs } from "pinia";
 const { set_sessionIdStore } = storeToRefs(useUserInfoStore());
 
 interface Props {
-  formItemData: formItemArrTypes;
+  formItemData: FormItemArrTypes;
   formModel: any;
 }
 const props = withDefaults(defineProps<Props>(), {});

@@ -1,9 +1,9 @@
 import type {
-  formItemArrTypes,
+  FormItemArrTypes,
   SearchType,
-  dialogHandleType,
+  DialogHandleType,
+  TableCloumnArrTypes,
 } from "@/types/elementPlusTypes";
-import type { TableCloumnArrTypes } from "@/types/elementPlusTypes";
 import type { FormRules } from "element-plus";
 
 export const searchFormTypeConfig: Array<SearchType> = [
@@ -24,7 +24,7 @@ export const searchFormTypeConfig: Array<SearchType> = [
 /**
  * 查询表单选项配置
  */
-export const formItemConfigArr: Array<formItemArrTypes> = [
+export const formItemConfigArr: Array<FormItemArrTypes> = [
   {
     label: "复合查询",
     prop: "goods_name",
@@ -230,7 +230,7 @@ export const tableCloumnConfigArr: Array<TableCloumnArrTypes> = [
 /**
  * 表格数据新增或修改
  */
-export const addOrEditItemConfigArr: Array<formItemArrTypes> = [
+export const addOrEditItemConfigArr: Array<FormItemArrTypes> = [
   {
     label: "订单ID",
     prop: "order_id",

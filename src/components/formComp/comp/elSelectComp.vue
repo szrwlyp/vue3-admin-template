@@ -2,11 +2,11 @@
 import { toRefs } from "vue";
 import type {
   SelectCompOptions,
-  formItemArrTypes,
+  FormItemArrTypes,
 } from "@/types/elementPlusTypes";
 
 interface Props {
-  formItemData: formItemArrTypes;
+  formItemData: FormItemArrTypes;
   formModel: any;
 }
 const props = withDefaults(defineProps<Props>(), {});
