@@ -6,6 +6,7 @@ import {
   markRaw,
   computed,
   onUnmounted,
+  watch,
   nextTick,
 } from "vue";
 import { deepClone } from "@/utils/index";
@@ -20,15 +21,28 @@ import { of, skip, take, toArray, map, fromEvent, debounceTime } from "rxjs";
  * Props
  * @param tableData table数据
  * @param tableColumnArr table列配置数组
+ * @param pagination 分页参数
  */
 interface Props {
   tableData: Array<any>;
   tableColumnArr: Array<TableCloumnArrTypes>;
+  pagination: Pagination;
+}
+/**
+ * 分页
+ * @param total 总条数
+ * @param currentPage 当前页
+ * @param pageSize 当前页条数
+ */
+interface Pagination {
   total: number;
   currentPage: number;
   pageSize: number;
 }
 const props = defineProps<Props>();
+
+// 分页
+const { total, currentPage, pageSize } = toRefs(props.pagination);
 
 const tableRef = ref();
 
@@ -135,6 +149,7 @@ onUnmounted(() => {
   <el-table
     :data="tableData"
     ref="tableRef"
+    id="elTable"
     style="width: 100%"
     :max-height="'calc(100vh - ' + tableHeight + 'px)'"
     table-layout="fixed"
@@ -170,8 +185,8 @@ onUnmounted(() => {
   </el-table>
   <div class="table-pagination" ref="paginationRef">
     <el-pagination
-      :model-value:current-page="currentPage"
-      :model-value:page-size="pageSize"
+      v-model:current-page="currentPage"
+      v-model:page-size="pageSize"
       background
       :page-sizes="[10, 50, 100, 200]"
       layout="total, sizes, prev, pager, next, jumper"

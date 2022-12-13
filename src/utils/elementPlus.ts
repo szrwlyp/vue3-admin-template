@@ -39,11 +39,6 @@ export const u_ElMessage = (messageOptions: UELMessage) => {
 };
 
 /**
- * 表格加载
- * U_ElLoadingInstance 加载实例
- * U_ElLoadingFun 加载方法
- */
-/**
  *
  * @param text 显示在加载图标下方的加载文案
  * @param background 遮罩背景色
@@ -58,7 +53,16 @@ interface LoadingOptions {
   lock?: boolean;
   spinner?: string;
 }
-export let U_ElLoadingInstance: any = {};
-export const U_ElLoadingFun = (options?: LoadingOptions): void => {
-  U_ElLoadingInstance = ElLoading.service(options);
+/**
+ * 表格加载
+ * tableLoadingInstance 加载实例
+ * tableLoading 加载方法
+ */
+export let tableLoadingInstance: any = {};
+export const tableLoading = (options?: LoadingOptions): void => {
+  const param = {
+    target: (document.getElementById("elTable") as HTMLElement) ?? "",
+    ...options,
+  };
+  tableLoadingInstance = ElLoading.service(param);
 };
