@@ -31,7 +31,7 @@ import {
   tableCloumnConfigArr,
   addOrEditItemConfigArr,
   addOrEditFulesConfig,
-} from "@/config/demo/orderQueryConfig";
+} from "@/compConfig/demo/orderQueryConfig";
 
 const orderDataStore = useOrderDataStore();
 

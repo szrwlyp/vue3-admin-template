@@ -26,20 +26,15 @@ import {
   tableLoadingInstance,
   tableLoading,
 } from "@/utils/elementPlus";
-import type {
-  formItemArrTypes,
-  SearchType,
-  dialogHandleType,
-} from "@/types/elementPlusTypes";
-import type { TableCloumnArrTypes } from "@/types/elementPlusTypes";
+import type { dialogHandleType } from "@/types/elementPlusTypes";
 import {
   tableCloumnConfigArr,
   formItemConfigArr,
   searchFormTypeConfig,
-} from "@/config/demo/orderActiveConfig";
+} from "@/compConfig/demo/orderActiveConfig";
 
 // 依赖注入
-const searchFormType: Array<SearchType> = searchFormTypeConfig;
+const searchFormType = searchFormTypeConfig;
 provide("searchFormType", searchFormType);
 
 /************************************************* 查询 ******************************************* */
@@ -51,7 +46,7 @@ const searchFormData = ref({
 });
 
 // 需要查询的item
-const formItemArr = reactive<Array<formItemArrTypes>>(formItemConfigArr);
+const formItemArr = reactive(formItemConfigArr);
 // 提交查询
 const handleFormSubmit = () => {
   console.log("提交查询", searchFormData.value);
@@ -74,8 +69,7 @@ const addData = () => {};
 /********************************************* table(表格) *************************************/
 
 let tableData = ref<Array<any>>([]);
-const tableCloumnArr =
-  reactive<Array<TableCloumnArrTypes>>(tableCloumnConfigArr);
+const tableCloumnArr = reactive(tableCloumnConfigArr);
 const getTableData = () => {
   let params = Object.assign(
     {
