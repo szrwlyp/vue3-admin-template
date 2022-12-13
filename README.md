@@ -8,6 +8,7 @@
 
 ## 目录结构描述
 
+```
 ├── src
 │ ├── assets // 静态资源文件
 │ ├── compConfig // form，table 等组件配置文件
@@ -25,6 +26,7 @@
 │ ├── views // 视图文件
 ├── .env.development //测试环境配置文件
 ├── .env.production //生产环境配置文件
+```
 
 ## Type Support for `.vue` Imports in TS
 
