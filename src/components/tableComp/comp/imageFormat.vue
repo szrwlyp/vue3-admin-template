@@ -3,15 +3,16 @@ import { computed, toRefs } from "vue";
 import type { TableCloumnArrTypes } from "@/types/elementPlusTypes";
 
 interface Props {
-  compData: any;
-  cloumnCompOptions: TableCloumnArrTypes;
+  columnRow: any;
+  columnIndex: number;
+  columnCompOptions: TableCloumnArrTypes;
 }
 const props = defineProps<Props>();
 
-const { prop } = toRefs<TableCloumnArrTypes>(props.cloumnCompOptions);
-
+const { prop } = toRefs<TableCloumnArrTypes>(props.columnCompOptions);
+console.log();
 const imgStr = computed(() => {
-  return props.compData[prop.value];
+  return props.columnRow[prop?.value as keyof typeof props.columnRow];
 });
 </script>
 

@@ -31,6 +31,7 @@ import {
   tableCloumnConfigArr,
   addOrEditItemConfigArr,
   addOrEditFulesConfig,
+  tableConfig,
 } from "@/compConfig/demo/orderQueryConfig";
 
 const orderDataStore = useOrderDataStore();
@@ -98,6 +99,8 @@ let tableData = ref<Array<any>>([]);
 const tableRef = ref();
 
 const tableCloumnArr = reactive(tableCloumnConfigArr);
+
+const tableConfigOptions = reactive(tableConfig);
 
 // 处理表格选中的数据列
 const batchSelectionData = ref<Array<any>>([]);
@@ -313,6 +316,7 @@ onUnmounted(() => {});
     ref="tableRef"
     :table-column-arr="tableCloumnArr"
     :table-data="tableData"
+    :table-options="tableConfigOptions"
     :pagination="pagination"
     @emit-selection-change="handleSelectionChange"
     @emit-edit-operation="handleEditOperation"

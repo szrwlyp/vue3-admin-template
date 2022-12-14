@@ -11,6 +11,17 @@ import type {
  */
 export const tableCloumnConfigArr: Array<TableCloumnArrTypes> = [
   {
+    type: "selection",
+    align: "center",
+    width: "50px",
+  },
+  {
+    type: "index",
+    align: "center",
+    label: "序号",
+    width: "60px",
+  },
+  {
     prop: "openid",
     label: "openid",
     align: "center",
@@ -53,26 +64,35 @@ export const tableCloumnConfigArr: Array<TableCloumnArrTypes> = [
     align: "center",
   },
   {
-    prop: "province",
-    label: "访问地区",
+    label: "配送信息",
     align: "center",
-    // children: [
-    //   {
-    //     prop: "province",
-    //     label: "省",
-    //     align: "center",
-    //   },
-    //   {
-    //     prop: "city",
-    //     label: "市",
-    //     align: "center",
-    //   },
-    //   {
-    //     prop: "region",
-    //     label: "区",
-    //     align: "center",
-    //   },
-    // ],
+    children: [
+      {
+        label: "全国",
+        align: "center",
+        children: [
+          {
+            prop: "province",
+            label: "省",
+            align: "center",
+          },
+          {
+            prop: "city",
+            label: "市",
+            align: "center",
+          },
+          {
+            prop: "region",
+            label: "区",
+            align: "center",
+          },
+        ],
+      },
+      {
+        label: "备注",
+        align: "center",
+      },
+    ],
   },
   {
     prop: "log",
@@ -288,7 +308,7 @@ export const searchFormTypeConfig: Array<SearchType> = [
 export const tableConfig: TableConfig = {
   stripe: false,
   headerCellStyle: {
-    background: "#eceff3",
+    background: "#f5f7fa",
     color: "#000000",
   },
   // headerRowClassName: "aaa",

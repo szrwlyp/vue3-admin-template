@@ -3,6 +3,7 @@ import type {
   SearchType,
   DialogHandleType,
   TableCloumnArrTypes,
+  TableConfig,
 } from "@/types/elementPlusTypes";
 import type { FormRules } from "element-plus";
 
@@ -163,6 +164,17 @@ export const formItemConfigArr: Array<FormItemArrTypes> = [
  */
 export const tableCloumnConfigArr: Array<TableCloumnArrTypes> = [
   {
+    type: "selection",
+    align: "center",
+    width: "50px",
+  },
+  {
+    type: "index",
+    align: "center",
+    label: "序号",
+    width: "60px",
+  },
+  {
     prop: "order_id",
     label: "订单ID",
   },
@@ -177,6 +189,7 @@ export const tableCloumnConfigArr: Array<TableCloumnArrTypes> = [
     label: "订单时间",
     isChange: true,
     component: "dateFormat",
+    sortable: true,
   },
   {
     prop: "goods_name",
@@ -488,4 +501,34 @@ export const addOrEditFulesConfig: FormRules = {
       trigger: "change",
     },
   ],
+};
+
+/**
+ * 表格配置
+ */
+export const tableConfig: TableConfig = {
+  stripe: false,
+  headerCellStyle: {
+    background: "#eceff3",
+    color: "#000000",
+  },
+  // headerRowClassName: "aaa",
+  // headerRowStyle: { background: "#eceff3", color: "#000000" },
+  highlightCurrentRow: false,
+  tableLayout: "fixed",
+  // border: true,
+  rowClassName: ({ row, rowIndex }: { row: any; rowIndex: number }) => {
+    switch (rowIndex) {
+      case 1:
+        return "warning-row";
+      case 3:
+        return "success-row";
+      case 5:
+        return "danger-row";
+      case 7:
+        return "info-row";
+      default:
+        return "";
+    }
+  },
 };

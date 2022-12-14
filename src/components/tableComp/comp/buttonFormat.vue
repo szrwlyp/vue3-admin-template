@@ -1,17 +1,28 @@
 <script setup lang="ts">
 import { computed, toRefs } from "vue";
 import type { TableCloumnArrTypes } from "@/types/elementPlusTypes";
+import { tableEventSubject$ } from "../observableSubject";
 
 interface Props {
-  compData: any;
-  cloumnCompOptions: TableCloumnArrTypes;
+  columnRow: any;
+  columnIndex: number;
+  columnCompOptions: TableCloumnArrTypes;
 }
 const props = defineProps<Props>();
 
 const emits = defineEmits(["emitEditOperation", "emitDeleteOperation"]);
 
-const { compOptions } = toRefs<TableCloumnArrTypes>(props.cloumnCompOptions);
-// console.log(props.cloumnCompOptions);
+const { compOptions } = toRefs<TableCloumnArrTypes>(props.columnCompOptions);
+// console.log(props.columnCompOptions);
+
+// 修改，删除操作
+const buttonOperation = (emitName: Table.EmitEventName) => {
+  let message: Table.TableEventEmit = {
+    emitEventName: emitName,
+    emitParams: { index: props.columnIndex, row: props.columnRow },
+  };
+  tableEventSubject$.next(message);
+};
 </script>
 
 <template>
@@ -25,7 +36,7 @@ const { compOptions } = toRefs<TableCloumnArrTypes>(props.cloumnCompOptions);
     :disabled="item.disabled"
     :text="item.text"
     :bg="item.bg"
-    @click="emits(item.emitEvent)"
+    @click="buttonOperation(item.emitEvent)"
     >{{ item.buttonText }}</el-button
   >
 </template>

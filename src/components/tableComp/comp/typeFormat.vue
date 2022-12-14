@@ -3,17 +3,20 @@ import { inject, computed, toRefs } from "vue";
 import type { TableCloumnArrTypes } from "@/types/elementPlusTypes";
 
 interface Props {
-  compData: any;
-  cloumnCompOptions: TableCloumnArrTypes;
+  columnRow: any;
+  columnIndex: number;
+  columnCompOptions: TableCloumnArrTypes;
 }
 const props = defineProps<Props>();
-const { prop } = toRefs<TableCloumnArrTypes>(props.cloumnCompOptions);
+const { prop } = toRefs<TableCloumnArrTypes>(props.columnCompOptions);
 
 const columnType = inject("searchFormType") as any;
 
 const typeStr = computed(() => {
   const { label } = columnType.find(
-    (item: any) => item.value === props.compData[prop.value]
+    (item: any) =>
+      item.value ===
+      props.columnRow[prop?.value as keyof typeof props.columnRow]
   );
   return label;
 });

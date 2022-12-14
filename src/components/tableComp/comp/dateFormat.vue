@@ -4,17 +4,18 @@ import { formatDate } from "@/utils/dateFun";
 import type { TableCloumnArrTypes } from "@/types/elementPlusTypes";
 
 interface Props {
-  compData: any;
-  cloumnCompOptions: TableCloumnArrTypes;
+  columnRow: any;
+  columnIndex: number;
+  columnCompOptions: TableCloumnArrTypes;
 }
 const props = defineProps<Props>();
 
-const { prop } = toRefs<TableCloumnArrTypes>(props.cloumnCompOptions);
+const { prop } = toRefs<TableCloumnArrTypes>(props.columnCompOptions);
 
 const detaStr = computed(() => {
   return formatDate({
     format: "yyyy-MM-dd hh:mm:ss",
-    date: props.compData[prop.value],
+    date: props.columnRow[prop?.value as keyof typeof props.columnRow],
   });
 });
 </script>

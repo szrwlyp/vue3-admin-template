@@ -103,9 +103,12 @@ export interface TableConfig extends PublicTable {}
  * @param
  */
 export interface TableCloumnArrTypes {
+  type?: string;
+  width?: string;
   prop?: string;
-  label: string;
+  label?: string;
   isChange?: boolean;
+  sortable?: boolean | string;
   component?: "imageFormat" | "typeFormat" | "dateFormat" | "buttonFormat";
   compOptions?: tableCompOptions;
   align?: "left" | "center" | "right";
