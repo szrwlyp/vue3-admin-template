@@ -2,10 +2,6 @@
 import { ref, toRefs, computed, onMounted } from "vue";
 import { Plus } from "@element-plus/icons-vue";
 import type {
-  UploadCompOptions,
-  FormItemArrTypes,
-} from "@/types/elementPlusTypes";
-import type {
   UploadProps,
   UploadUserFile,
   UploadFile,
@@ -17,7 +13,7 @@ import { storeToRefs } from "pinia";
 const { set_sessionIdStore } = storeToRefs(useUserInfoStore());
 
 interface Props {
-  formItemData: FormItemArrTypes;
+  formItemData: Form.FormItemArrTypes;
   formModel: any;
 }
 const props = withDefaults(defineProps<Props>(), {});
@@ -29,7 +25,7 @@ const uploadUrl = `${
 }/vpas/radar-server/resource-upload`;
 
 // const { checkboxArr, width } = toRefs(
-//   props.formItemData.uploadCompOptions as UploadCompOptions
+//   props.formItemData.uploadCompOptions as Form.UploadCompOptions
 // );
 
 const fileListFormat = () => {

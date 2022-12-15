@@ -1,18 +1,19 @@
 <script setup lang="ts">
 import { computed, toRefs } from "vue";
-import type { TableCloumnArrTypes } from "@/types/elementPlusTypes";
 import { tableEventSubject$ } from "../observableSubject";
 
 interface Props {
   columnRow: any;
   columnIndex: number;
-  columnCompOptions: TableCloumnArrTypes;
+  columnCompOptions: Table.TableCloumnArrTypes;
 }
 const props = defineProps<Props>();
 
 const emits = defineEmits(["emitEditOperation", "emitDeleteOperation"]);
 
-const { compOptions } = toRefs<TableCloumnArrTypes>(props.columnCompOptions);
+const { compOptions } = toRefs<Table.TableCloumnArrTypes>(
+  props.columnCompOptions
+);
 // console.log(props.columnCompOptions);
 
 // 修改，删除操作

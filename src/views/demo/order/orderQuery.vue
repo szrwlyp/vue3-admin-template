@@ -14,7 +14,6 @@ import Table from "@/components/tableComp/index.vue";
 import Form from "@/components/formComp/index.vue";
 import Divider from "@/components/dividerComp.vue";
 import Dialog from "@/components/dialogComp/index.vue";
-import type { DialogHandleType } from "@/types/elementPlusTypes";
 import { orderData } from "./data";
 import {
   mainScrollTop,
@@ -196,7 +195,7 @@ const handleTableData = () => {
 
 /***************************************** dialog对话框 **************************************/
 const dialogVisible = ref(false);
-const dialogOperation = ref<DialogHandleType>();
+const dialogOperation = ref<Form.DialogHandleType>();
 const dialogFormRef = ref();
 
 interface addOrEditDataType {
@@ -323,8 +322,21 @@ onUnmounted(() => {});
     @emit-delete-operation="handleDeleteOperation"
     @emit-pagination-current-change="handleCurrentChange"
     @emit-pagination-size-change="handleSizeChange"
-  />
+  >
+    <template #expand="{ expandData }">
+      <div style="margin-left: 100px">
+        <p>订单ID：{{ expandData.order_id }}</p>
+        <p>商品名称：{{ expandData.goods_name }}</p>
+        <p>收货人：{{ expandData.user_name }}</p>
+        <p>收货地址：{{ expandData.address }}</p>
+      </div>
+    </template>
+  </Table>
 
+  <!-- 目标元素必须在安装组件之前存在-即，目标不能由组件本身呈现，理想情况下应该位于整个Vue组件树之外。 -->
+  <!-- <teleport to="#expand">
+    <div>将本元素传送到expand</div>
+  </teleport> -->
   <Dialog
     :dialog-visible="dialogVisible"
     :dislog-title="dialogOperation"

@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import { inject, computed, toRefs } from "vue";
-import type { TableCloumnArrTypes } from "@/types/elementPlusTypes";
 
 interface Props {
   columnRow: any;
   columnIndex: number;
-  columnCompOptions: TableCloumnArrTypes;
+  columnCompOptions: Table.TableCloumnArrTypes;
 }
 const props = defineProps<Props>();
-const { prop } = toRefs<TableCloumnArrTypes>(props.columnCompOptions);
+const { prop } = toRefs<Table.TableCloumnArrTypes>(props.columnCompOptions);
 
 const columnType = inject("searchFormType") as any;
 

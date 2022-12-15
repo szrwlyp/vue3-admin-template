@@ -1,11 +1,8 @@
 <script setup lang="ts">
 import { toRefs } from "vue";
-import type {
-  FormItemArrTypes,
-  DateCompOptions,
-} from "@/types/elementPlusTypes";
+
 interface Props {
-  formItemData: FormItemArrTypes;
+  formItemData: Form.FormItemArrTypes;
   formModel: any;
 }
 const props = withDefaults(defineProps<Props>(), {});
@@ -20,7 +17,7 @@ const {
   shortcuts,
   disabledDate,
   width,
-} = toRefs(props?.formItemData?.dateCompOptions as DateCompOptions);
+} = toRefs(props?.formItemData?.dateCompOptions as Form.DateCompOptions);
 </script>
 
 <template>

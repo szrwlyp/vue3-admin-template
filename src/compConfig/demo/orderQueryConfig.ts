@@ -1,13 +1,6 @@
-import type {
-  FormItemArrTypes,
-  SearchType,
-  DialogHandleType,
-  TableCloumnArrTypes,
-  TableConfig,
-} from "@/types/elementPlusTypes";
 import type { FormRules } from "element-plus";
 
-export const searchFormTypeConfig: Array<SearchType> = [
+export const searchFormTypeConfig: Array<Form.SearchType> = [
   {
     value: 1,
     label: "已发货",
@@ -25,7 +18,7 @@ export const searchFormTypeConfig: Array<SearchType> = [
 /**
  * 查询表单选项配置
  */
-export const formItemConfigArr: Array<FormItemArrTypes> = [
+export const formItemConfigArr: Array<Form.FormItemArrTypes> = [
   {
     label: "复合查询",
     prop: "goods_name",
@@ -162,7 +155,12 @@ export const formItemConfigArr: Array<FormItemArrTypes> = [
 /**
  * 表格列数据标题配置
  */
-export const tableCloumnConfigArr: Array<TableCloumnArrTypes> = [
+export const tableCloumnConfigArr: Array<Table.TableCloumnArrTypes> = [
+  // {
+  //   type: "expand",
+  //   align: "center",
+  //   width: "50px",
+  // },
   {
     type: "selection",
     align: "center",
@@ -177,17 +175,16 @@ export const tableCloumnConfigArr: Array<TableCloumnArrTypes> = [
   {
     prop: "order_id",
     label: "订单ID",
+    sortable: true,
   },
   {
     prop: "order_type",
     label: "订单类型",
-    isChange: true,
     component: "typeFormat",
   },
   {
     prop: "order_date",
     label: "订单时间",
-    isChange: true,
     component: "dateFormat",
     sortable: true,
   },
@@ -198,7 +195,6 @@ export const tableCloumnConfigArr: Array<TableCloumnArrTypes> = [
   {
     prop: "goods_img",
     label: "商品图片",
-    isChange: true,
     component: "imageFormat",
   },
   {
@@ -216,7 +212,6 @@ export const tableCloumnConfigArr: Array<TableCloumnArrTypes> = [
   {
     prop: "",
     label: "操作",
-    isChange: true,
     component: "buttonFormat",
     compOptions: {
       operationButtonArr: [
@@ -243,7 +238,7 @@ export const tableCloumnConfigArr: Array<TableCloumnArrTypes> = [
 /**
  * 表格数据新增或修改
  */
-export const addOrEditItemConfigArr: Array<FormItemArrTypes> = [
+export const addOrEditItemConfigArr: Array<Form.FormItemArrTypes> = [
   {
     label: "订单ID",
     prop: "order_id",
@@ -506,12 +501,13 @@ export const addOrEditFulesConfig: FormRules = {
 /**
  * 表格配置
  */
-export const tableConfig: TableConfig = {
+export const tableConfig: Table.TableConfig = {
   stripe: false,
   headerCellStyle: {
     background: "#eceff3",
     color: "#000000",
   },
+  // showSummary: true,
   // headerRowClassName: "aaa",
   // headerRowStyle: { background: "#eceff3", color: "#000000" },
   highlightCurrentRow: false,

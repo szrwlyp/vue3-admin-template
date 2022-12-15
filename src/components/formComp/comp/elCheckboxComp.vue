@@ -1,19 +1,15 @@
 <script setup lang="ts">
 import { toRefs, onMounted } from "vue";
-import type {
-  CheckboxCompOptions,
-  FormItemArrTypes,
-} from "@/types/elementPlusTypes";
 
 interface Props {
-  formItemData: FormItemArrTypes;
+  formItemData: Form.FormItemArrTypes;
   formModel: any;
 }
 const props = withDefaults(defineProps<Props>(), {});
 const { label, model, disableEditData } = toRefs(props.formItemData);
 
 const { checkboxArr, width } = toRefs(
-  props.formItemData.checkboxCompOptions as CheckboxCompOptions
+  props.formItemData.checkboxCompOptions as Form.CheckboxCompOptions
 );
 </script>
 

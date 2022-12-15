@@ -1,15 +1,7 @@
-import type {
-  FormItemArrTypes,
-  SearchType,
-  DialogHandleType,
-  TableCloumnArrTypes,
-  TableConfig,
-} from "@/types/elementPlusTypes";
-
 /**
  * 表格列数据标题配置
  */
-export const tableCloumnConfigArr: Array<TableCloumnArrTypes> = [
+export const tableCloumnConfigArr: Array<Table.TableCloumnArrTypes> = [
   {
     type: "selection",
     align: "center",
@@ -30,7 +22,6 @@ export const tableCloumnConfigArr: Array<TableCloumnArrTypes> = [
   {
     prop: "headUrl",
     label: "用户头像",
-    isChange: true,
     component: "imageFormat",
     align: "center",
   },
@@ -42,7 +33,6 @@ export const tableCloumnConfigArr: Array<TableCloumnArrTypes> = [
   {
     prop: "type",
     label: "操作类型",
-    isChange: true,
     component: "typeFormat",
     align: "center",
   },
@@ -54,7 +44,6 @@ export const tableCloumnConfigArr: Array<TableCloumnArrTypes> = [
   {
     prop: "time",
     label: "访问时间",
-    isChange: true,
     component: "dateFormat",
     align: "center",
   },
@@ -104,7 +93,7 @@ export const tableCloumnConfigArr: Array<TableCloumnArrTypes> = [
 /**
  * 表单项目配置
  */
-export const formItemConfigArr: Array<FormItemArrTypes> = [
+export const formItemConfigArr: Array<Form.FormItemArrTypes> = [
   {
     label: "用户昵称",
     prop: "name",
@@ -239,7 +228,7 @@ export const formItemConfigArr: Array<FormItemArrTypes> = [
 /**
  * 表单，表格类型格式
  */
-export const searchFormTypeConfig: Array<SearchType> = [
+export const searchFormTypeConfig: Array<Form.SearchType> = [
   {
     value: "open",
     label: "打开小程序",
@@ -305,17 +294,53 @@ export const searchFormTypeConfig: Array<SearchType> = [
 /**
  * 表格配置
  */
-export const tableConfig: TableConfig = {
+export const tableConfig: Table.TableConfig = {
   stripe: false,
   headerCellStyle: {
     background: "#f5f7fa",
     color: "#000000",
   },
+  showSummary: true,
+  sumText: "总计1",
   // headerRowClassName: "aaa",
   // headerRowStyle: { background: "#eceff3", color: "#000000" },
   highlightCurrentRow: false,
   tableLayout: "fixed",
   // border: true,
+  summaryMethod: (param: any) => {
+    const { columns, data } = param,
+      includeArr = ["duration"];
+
+    if (!columns.length || !data.length) {
+      return 0;
+    }
+
+    const sums: string[] = [];
+    columns.forEach((column: any, index: number) => {
+      if (index === 0) {
+        sums[index] = "总计1";
+        return;
+      }
+
+      const values = data.map((item: any) => Number(item[column.property]));
+      if (
+        !values.every((value: any) => Number.isNaN(value)) &&
+        includeArr.includes(column.property)
+      ) {
+        sums[index] = `$ ${values.reduce((prev: number, curr: number) => {
+          const value = Number(curr);
+          if (!Number.isNaN(value)) {
+            return prev + curr;
+          } else {
+            return prev;
+          }
+        }, 0)}`;
+      } else {
+        sums[index] = "N/A";
+      }
+    });
+    return sums;
+  },
   rowClassName: ({ row, rowIndex }: { row: any; rowIndex: number }) => {
     switch (rowIndex) {
       case 1:

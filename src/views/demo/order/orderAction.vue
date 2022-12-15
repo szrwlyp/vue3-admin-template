@@ -26,7 +26,6 @@ import {
   tableLoadingInstance,
   tableLoading,
 } from "@/utils/elementPlus";
-import type { DialogHandleType } from "@/types/elementPlusTypes";
 import {
   tableCloumnConfigArr,
   formItemConfigArr,

@@ -2,14 +2,9 @@
 import CascaderComp from "@/components/elementPlusComp/elCascaderComp.vue";
 
 import { ref, computed, watch, toRefs } from "vue";
-import type {
-  FormItemArrTypes,
-  SearchType,
-  InputCompOptions,
-} from "@/types/elementPlusTypes";
 
 interface Props {
-  formItemData: FormItemArrTypes;
+  formItemData: Form.FormItemArrTypes;
   formModel: any;
 }
 const props = withDefaults(defineProps<Props>(), {});

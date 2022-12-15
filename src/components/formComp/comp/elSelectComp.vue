@@ -1,19 +1,15 @@
 <script setup lang="ts">
 import { toRefs } from "vue";
-import type {
-  SelectCompOptions,
-  FormItemArrTypes,
-} from "@/types/elementPlusTypes";
 
 interface Props {
-  formItemData: FormItemArrTypes;
+  formItemData: Form.FormItemArrTypes;
   formModel: any;
 }
 const props = withDefaults(defineProps<Props>(), {});
 const { label, model, disableEditData } = toRefs(props.formItemData);
 
 const { placeholder, width, selectList } = toRefs(
-  props.formItemData.selectCompOptions as SelectCompOptions
+  props.formItemData.selectCompOptions as Form.SelectCompOptions
 );
 </script>
 

@@ -2,10 +2,6 @@
 import { ref, markRaw, computed, watch, onMounted } from "vue";
 import { of, iif, switchMap, toArray, defer } from "rxjs";
 import { deepClone } from "@/utils/index";
-import type {
-  FormItemArrTypes,
-  DialogHandleType,
-} from "@/types/elementPlusTypes";
 import Input from "./comp/elInputComp.vue";
 import Select from "./comp/elSelectComp.vue";
 import DatePicker from "./comp/elDateComp.vue";
@@ -29,10 +25,10 @@ import type { FormInstance, FormRules } from "element-plus";
 interface FormProp {
   inline?: boolean;
   rules?: FormRules;
-  formItemArr: Array<FormItemArrTypes>;
+  formItemArr: Array<Form.FormItemArrTypes>;
   formData: any;
   labelWidth?: string | number;
-  dialogOperation?: DialogHandleType;
+  dialogOperation?: Form.DialogHandleType;
 }
 const props = defineProps<FormProp>();
 
@@ -44,7 +40,7 @@ const props = defineProps<FormProp>();
  */
 watch(
   () => props.dialogOperation,
-  (newValue: DialogHandleType) => {
+  (newValue: Form.DialogHandleType) => {
     if (!newValue) return;
     props.formItemArr.map((item) => {
       if (Reflect.has(item, "disableEditData")) {

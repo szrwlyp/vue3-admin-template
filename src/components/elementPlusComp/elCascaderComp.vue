@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, toRefs } from "vue";
-import type { CascaderCompOptions } from "@/types/elementPlusTypes";
 
 interface Props {
   compOptions: any;
@@ -19,7 +18,7 @@ const {
   emitChangeEvent,
   emitExpandChangeEvent,
   width,
-} = toRefs<CascaderCompOptions>(props.compOptions);
+} = toRefs<Form.CascaderCompOptions>(props.compOptions);
 
 const emits = defineEmits(["emitChange", "emitExpandChange"]);
 

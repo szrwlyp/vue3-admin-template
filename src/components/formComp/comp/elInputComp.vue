@@ -1,13 +1,8 @@
 <script setup lang="ts">
 import { ref, computed, watch, toRefs } from "vue";
-import type {
-  FormItemArrTypes,
-  SearchType,
-  InputCompOptions,
-} from "@/types/elementPlusTypes";
 
 interface Props {
-  formItemData: FormItemArrTypes;
+  formItemData: Form.FormItemArrTypes;
   formModel: any;
 }
 const props = withDefaults(defineProps<Props>(), {});
@@ -28,7 +23,7 @@ let {
   size,
   autosize,
   showWordLimit,
-} = toRefs(props.formItemData.inputCompOptions as InputCompOptions);
+} = toRefs(props.formItemData.inputCompOptions as Form.InputCompOptions);
 
 const emits = defineEmits(["emitSubmitButton"]);
 
@@ -46,7 +41,7 @@ watch(
   () => {
     if (Array.isArray(inputSlotContentRef?.value)) {
       let { label } = inputSlotContentRef.value.find(
-        (item: SearchType) => item.value === model.value
+        (item: Form.SearchType) => item.value === model.value
       );
       inputPlaceholder.value = `请输入${label}`;
     }

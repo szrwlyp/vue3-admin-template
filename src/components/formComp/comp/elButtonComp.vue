@@ -1,17 +1,12 @@
 <script setup lang="ts">
 import { toRefs } from "vue";
-import type {
-  FormItemArrTypes,
-  ButtonCompOptions,
-} from "@/types/elementPlusTypes";
-// import { Search, Refresh } from "@element-plus/icons-vue";
 interface Props {
-  formItemData: FormItemArrTypes;
+  formItemData: Form.FormItemArrTypes;
   formModel: any;
 }
 const props = withDefaults(defineProps<Props>(), {});
 const { buttonArr } = toRefs(
-  props.formItemData.buttonCompOptions as ButtonCompOptions
+  props.formItemData.buttonCompOptions as Form.ButtonCompOptions
 );
 
 console.log(buttonArr?.value);

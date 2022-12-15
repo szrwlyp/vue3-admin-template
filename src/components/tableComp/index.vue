@@ -10,14 +10,9 @@ import {
   nextTick,
 } from "vue";
 import { deepClone } from "@/utils/index";
-import type {
-  TableCloumnArrTypes,
-  TableConfig,
-} from "@/types/elementPlusTypes";
-
 import { of, skip, take, toArray, map, fromEvent, debounceTime } from "rxjs";
 import { tableEventSubject$ } from "./observableSubject";
-import ColumnItemComp from "./columnItems.vue";
+import ColumnItemComp from "./columnItemComp.vue";
 
 /**
  * Props
@@ -27,8 +22,8 @@ import ColumnItemComp from "./columnItems.vue";
  */
 interface Props {
   tableData: Array<any>;
-  tableOptions: TableConfig;
-  tableColumnArr: Array<TableCloumnArrTypes>;
+  tableOptions: Table.TableConfig;
+  tableColumnArr: Array<Table.TableCloumnArrTypes>;
   pagination: Pagination;
 }
 /**
@@ -54,6 +49,9 @@ const {
   rowClassName,
   headerRowClassName,
   headerRowStyle,
+  showSummary,
+  sumText,
+  summaryMethod,
 } = toRefs(props.tableOptions);
 
 // 分页
@@ -61,7 +59,7 @@ const { total, currentPage, pageSize } = toRefs(props.pagination);
 
 const tableRef = ref();
 
-const tableColumnArrData = ref<Array<TableCloumnArrTypes>>(
+const tableColumnArrData = ref<Array<Table.TableCloumnArrTypes>>(
   props.tableColumnArr
 );
 
@@ -183,15 +181,8 @@ onUnmounted(() => {
     ref="tableRef"
     id="elTable"
     style="width: 100%"
-    :stripe="stripe"
-    :border="border"
-    :header-cell-style="headerCellStyle"
-    :highlight-current-row="highlightCurrentRow"
+    v-bind="tableOptions"
     :max-height="'calc(100vh - ' + tableHeight + 'px)'"
-    :table-layout="tableLayout"
-    :row-class-name="rowClassName"
-    :header-row-style="headerRowStyle"
-    :header-row-class-name="headerRowClassName"
     @selection-change="selectionChange"
   >
     <!-- <column-comp
@@ -203,11 +194,16 @@ onUnmounted(() => {
       <el-table-column
         v-if="
           (item.type && item.type === 'selection') ||
-          item.type === 'expand' ||
-          item.type === 'index'
+          (item.type && item.type === 'index') ||
+          (item.type && item.type === 'expand')
         "
         v-bind="item"
-      />
+      >
+        <!-- 展开行插槽 -->
+        <template v-if="item.type && item.type === 'expand'" #default="props">
+          <slot name="expand" :expandData="props.row"></slot>
+        </template>
+      </el-table-column>
       <ColumnItemComp
         v-else
         :columnData="{}"

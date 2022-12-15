@@ -2,7 +2,6 @@
 import { ref, reactive, onMounted } from "vue";
 import Form from "@/components/formComp/index.vue";
 import type { FormRules } from "element-plus";
-import type { FormItemArrTypes } from "@/types/elementPlusTypes";
 import { userLogin } from "@/modules/user";
 import { sleep } from "@/utils/index";
 import { u_ElMessage } from "@/utils/elementPlus";
@@ -21,7 +20,7 @@ const formData = ref({
 });
 
 // 需要查询的item
-const formItemArr = ref<Array<FormItemArrTypes>>([
+const formItemArr = ref<Array<Form.FormItemArrTypes>>([
   {
     prop: "userName",
     model: "userName",

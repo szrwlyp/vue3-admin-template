@@ -1,17 +1,16 @@
 <script setup lang="ts">
 import { computed, toRefs } from "vue";
-import type { TableCloumnArrTypes } from "@/types/elementPlusTypes";
 
 interface Props {
   columnRow: any;
   columnIndex: number;
-  columnCompOptions: TableCloumnArrTypes;
+  columnCompOptions: Table.TableCloumnArrTypes;
 }
 const props = defineProps<Props>();
 
-const { prop } = toRefs<TableCloumnArrTypes>(props.columnCompOptions);
+const { prop } = toRefs<Table.TableCloumnArrTypes>(props.columnCompOptions);
 
-console.warn("默认组件", prop?.value);
+// console.warn("默认组件", prop?.value);
 </script>
 
 <template>

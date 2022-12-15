@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { reactive, ref } from "vue";
-import type { DialogHandleType } from "@/types/elementPlusTypes";
 
 /**
  * DialogTypes
@@ -9,7 +8,7 @@ import type { DialogHandleType } from "@/types/elementPlusTypes";
  */
 interface DialogTypes {
   dialogVisible: boolean;
-  dislogTitle: DialogHandleType;
+  dislogTitle: Form.DialogHandleType;
 }
 defineProps<DialogTypes>();
 
