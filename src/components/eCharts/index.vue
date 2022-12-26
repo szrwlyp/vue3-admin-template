@@ -26,7 +26,7 @@ import {
 } from "echarts/components";
 import { LabelLayout, UniversalTransition } from "echarts/features";
 import { CanvasRenderer } from "echarts/renderers";
-import type { chartBaseOptionsType } from "@/types/eCharts";
+import type { chartBaseOptionsType } from "@/typings/eCharts";
 
 // 通过 ComposeOption 来组合出一个只有必须组件和图表的 Option 类型
 type ECOption = echarts.ComposeOption<

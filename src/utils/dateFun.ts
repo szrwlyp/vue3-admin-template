@@ -1,4 +1,4 @@
-import type { FormatDate } from "../types/dateTypes";
+import type { FormatDate } from "../typings/dateTypes";
 /**
  * 格式化时间，日期函数
  * @param {date} 要格式化的日期

@@ -3,7 +3,7 @@ import { ref, reactive, onMounted } from "vue";
 import { useUserInfoStore } from "@/stores/userInfo";
 import { storeToRefs } from "pinia";
 import Charts from "@/components/eCharts/index.vue";
-import type { chartBaseOptionsType } from "@/types/eCharts";
+import type { chartBaseOptionsType } from "@/typings/eCharts";
 import { demo1, demo2 } from "@/modules/eCharts/demo";
 
 const chartBaseOptions = reactive<chartBaseOptionsType>({
