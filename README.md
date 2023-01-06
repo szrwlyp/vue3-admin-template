@@ -74,6 +74,9 @@ import Form from "@/components/formComp/index.vue";
 | inline | 行内表单模式 | boolean |
 | form-item-arr | form 表单 Item 配置项 | Array<Form.FormItemArrTypes> |
 | form-data | 表单数据 | any |
+| rules | 表单验证规则 | FormRules |
+| labelWidth | label 的宽度 | string/number |
+| dialogOperation | dialog 对话框类型（add,edit） | "add"/"edit" |
 
 **Form 方法** <br>
 | 方法名 | 说明 |
