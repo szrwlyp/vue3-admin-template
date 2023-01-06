@@ -2,6 +2,8 @@
 
 - [背景介绍](#背景介绍)
 - [项目介绍](#项目介绍)
+- [环境依赖](#环境依赖)
+- [文件目录介绍](#文件目录介绍)
 - [组件使用说明](#组件使用说明)
 
 <a name="背景介绍"></a>
@@ -18,42 +20,14 @@
 
 功能还在持续完善中
 
-<a name="组件使用说明"></a>
+<a name="环境依赖"></a>
 
-## 组件使用说明
+## 环境依赖
 
-### Form 表单组件
+- 已安装 16.0 或更高版本的 Node.js
+  <a name="文件目录介绍"></a>
 
-```
-import Form from "@/components/formComp/index.vue";
-<Form
-  :inline="true"
-  :form-item-arr="formItemArr"
-  :form-data="searchFormData"
-  @emit-form-submit="handleFormSubmit"
-  @emit-reset-form="handleFormReset"
-/>
-
-```
-
-**属性说明** <br>
-| 属性名 | 说明 | 类型 |
-| -------------- | :--------: | ---------- |
-| inline | 行内表单模式 | boolean |
-| form-item-arr | form 表单 Item 配置项 | Array<Form.FormItemArrTypes> |
-| form-data | 表单数据 ｜ any |
-
-**方法说明** <br>
-| 方法名 | 说明 |
-| -------------- | :--------: |
-| emit-form-submit | 表单提交方法 |
-| emit-reset-form | 表单重置方法 |
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## 目录结构描述
+## 文件目录介绍
 
 ```
 ├── src
@@ -74,6 +48,42 @@ import Form from "@/components/formComp/index.vue";
 ├── .env.development //测试环境配置文件
 ├── .env.production //生产环境配置文件
 ```
+
+<a name="组件使用说明"></a>
+
+## 组件使用说明
+
+### Form 表单组件
+
+```
+import Form from "@/components/formComp/index.vue";
+
+<Form
+  :inline="true"
+  :form-item-arr="formItemArr"
+  :form-data="searchFormData"
+  @emit-form-submit="handleFormSubmit"
+  @emit-reset-form="handleFormReset"
+/>
+
+```
+
+**Form 属性** <br>
+| 属性名 | 说明 | 类型 |
+| -------------- | -------- | ---------- |
+| inline | 行内表单模式 | boolean |
+| form-item-arr | form 表单 Item 配置项 | Array<Form.FormItemArrTypes> |
+| form-data | 表单数据 | any |
+
+**Form 方法** <br>
+| 方法名 | 说明 |
+| -------------- | -------- |
+| emit-form-submit | 表单提交方法 |
+| emit-reset-form | 表单重置方法 |
+
+## Recommended IDE Setup
+
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
 ## Type Support for `.vue` Imports in TS
 
