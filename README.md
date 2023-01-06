@@ -1,6 +1,53 @@
-# vue3-admin
+## 目录
 
-后台管理系统通用模版
+- [背景介绍](#背景介绍)
+- [项目介绍](#项目介绍)
+- [组件使用说明](#组件使用说明)
+
+<a name="背景介绍"></a>
+
+## 背景介绍
+
+通常，开始一个新的后台管理系统项目，前端都需要从头开始一步一步地搭建脚手架、安装 NPM 包等等。开发新项目时每次都得重复以上步骤说实话，很麻烦。
+
+<a name="项目介绍"></a>
+
+## 项目介绍
+
+此后台管理系统通用模版可用于快速搭建后台管理系统项目。内部二次封装了 Element Plus UI 库中的 form 表单组件、table 表格组件，可通过配置的形式重复、快速的搭建基本功能。使用 RxJS 实现节流，防抖，接口失败重发等基本功能。动态渲染多级菜单。
+
+功能还在持续完善中
+
+<a name="组件使用说明"></a>
+
+## 组件使用说明
+
+### Form 表单组件
+
+```
+import Form from "@/components/formComp/index.vue";
+<Form
+  :inline="true"
+  :form-item-arr="formItemArr"
+  :form-data="searchFormData"
+  @emit-form-submit="handleFormSubmit"
+  @emit-reset-form="handleFormReset"
+/>
+
+```
+
+**属性说明** <br>
+| 属性名 | 说明 | 类型 |
+| -------------- | :--------: | ---------- |
+| inline | 行内表单模式 | boolean |
+| form-item-arr | form 表单 Item 配置项 | Array<Form.FormItemArrTypes> |
+| form-data | 表单数据 ｜ any |
+
+**方法说明** <br>
+| 方法名 | 说明 |
+| -------------- | :--------: |
+| emit-form-submit | 表单提交方法 |
+| emit-reset-form | 表单重置方法 |
 
 ## Recommended IDE Setup
 
@@ -27,11 +74,6 @@
 ├── .env.development //测试环境配置文件
 ├── .env.production //生产环境配置文件
 ```
-
-| 表头           |    表头    | 表头       |
-| -------------- | :--------: | ---------- |
-| 你好单元格内容 | 单元格内容 | 单元格内容 |
-| 单元格内容     | 单元格内容 | 单元格内容 |
 
 ## Type Support for `.vue` Imports in TS
 
