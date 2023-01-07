@@ -230,7 +230,7 @@ import Form from "@/components/formComp/index.vue";
 | prop | model 的键名。 在定义了 validate、resetFields 的方法时，该属性是必填的（必须属性） | string |
 | model | v-model 值（必须属性） | string |
 | component | 当前 Item 所需组件名称（必须属性） | input/select/datePicker/button/switch/checkbox/upload/cascader |
-| inputCompOptions/dateCompOptions/buttonCompOptions/selectCompOptions/switchCompOptions/checkboxCompOptions/uploadCompOptions/cascaderCompOptions | 对应上边 component 属性，是每个 Item 组件的配置项（必须属性） | inputCompOptions/dateCompOptions/buttonCompOptions/selectCompOptions/switchCompOptions/checkboxCompOptions/uploadCompOptions/cascaderCompOptions |
+| inputCompOptions/ dateCompOptions/ buttonCompOptions/ selectCompOptions/switchCompOptions/ checkboxCompOptions/ uploadCompOptions/ cascaderCompOptions | 对应上边 component 属性，是每个 Item 组件的配置项（必须属性） | inputCompOptions/dateCompOptions/buttonCompOptions/selectCompOptions/switchCompOptions/checkboxCompOptions/uploadCompOptions/cascaderCompOptions |
 
 ## Recommended IDE Setup
 
