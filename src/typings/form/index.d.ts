@@ -5,7 +5,7 @@ declare namespace Form {
    * @param prop model的键名。在定义了 validate、resetFields 的方法时，该属性是必填的。
    * @param model v-model值
    * @param disableEditData 禁止编辑数据
-   * @param component 所需组件
+   * @param component 当前Item所需组件
    * @param compOptions 组件的选项参数（配置项）
    */
   type component =

@@ -71,18 +71,166 @@ import Form from "@/components/formComp/index.vue";
 **Form 属性** <br>
 | 属性名 | 说明 | 类型 |
 | -------------- | -------- | ---------- |
-| inline | 行内表单模式 | boolean |
+| inline | 行内表单模式（可选属性） | boolean |
 | form-item-arr | form 表单 Item 配置项 | Array<Form.FormItemArrTypes> |
 | form-data | 表单数据 | any |
-| rules | 表单验证规则 | FormRules |
-| labelWidth | label 的宽度 | string/number |
-| dialogOperation | dialog 对话框类型（add,edit） | "add"/"edit" |
+| rules | 表单验证规则（可选属性） | FormRules |
+| dialogOperation | dialog 对话框类型（可选属性） | "add"/"edit" |
 
 **Form 方法** <br>
 | 方法名 | 说明 |
 | -------------- | -------- |
 | emit-form-submit | 表单提交方法 |
 | emit-reset-form | 表单重置方法 |
+
+#### form 表单 Item 配置项
+
+```
+配置项示例代码
+[
+  {
+    label: "复合查询",
+    prop: "goods_name",
+    model: "goods_name",
+    component: "input",
+    inputCompOptions: {
+      placeholder: "",
+      type: "text",
+      inputSlot: "prepend",
+      inputSlotContent: [
+        {
+          value: "goods_name",
+          label: "商品名称",
+        },
+        {
+          value: "phone",
+          label: "电话",
+        },
+      ],
+    },
+  },
+  // {
+  //   label: "",
+  //   prop: "order_id",
+  //   model: "order_id",
+  //   component: "input",
+  //   compOptions: {
+  //     placeholder: "请输入",
+  //     inputSlot: "prepend",
+  //     inputSlotContent: "Http://",
+  //   },
+  // },
+  {
+    label: "订单ID",
+    prop: "order_id",
+    model: "order_id",
+    component: "input",
+    inputCompOptions: {
+      type: "text",
+      placeholder: "请输入订单ID",
+    },
+  },
+
+  {
+    label: "订单类型",
+    prop: "order_type",
+    model: "order_type",
+    component: "select",
+    selectCompOptions: {
+      placeholder: "请选择订单类型",
+      selectList: [
+        {
+          value: 1,
+          label: "已发货",
+        },
+        {
+          value: 2,
+          label: "已确认",
+        },
+        {
+          value: 3,
+          label: "待发货",
+        },
+      ],
+    },
+  },
+  {
+    label: "订单日期",
+    prop: "order_date",
+    model: "order_date",
+    component: "datePicker",
+    dateCompOptions: {
+      placeholder: "请选择日期",
+      type: "datetime",
+      // width: "300px",
+      // format: "YYYY/MM/DD",
+      // startPlaceholder: "请输入开始值",
+      // endPlaceholder: "请输入结束值",
+      valueFormat: "x",
+      disabledDate: (time: Date) => {
+        return time.getTime() > Date.now();
+      },
+      // shortcuts: [
+      //   {
+      //     text: "本月",
+      //     value: [new Date(), new Date()],
+      //   },
+      //   {
+      //     text: "今年",
+      //     value: () => {
+      //       const end = new Date();
+      //       const start = new Date(new Date().getFullYear(), 0);
+      //       return [start, end];
+      //     },
+      //   },
+      //   {
+      //     text: "过去6个月",
+      //     value: () => {
+      //       const end = new Date();
+      //       const start = new Date();
+      //       start.setMonth(start.getMonth() - 6);
+      //       return [start, end];
+      //     },
+      //   },
+      // ],
+    },
+  },
+  {
+    label: "button",
+    prop: "button",
+    model: "button",
+    component: "button",
+    buttonCompOptions: {
+      buttonArr: [
+        {
+          buttonText: "查询",
+          type: "primary",
+          icon: "Search",
+          // size: "large",
+          emitEvent: "emitSubmitButton",
+        },
+        {
+          buttonText: "重置",
+          icon: "Refresh",
+          plain: true,
+          // size: "large",
+          emitEvent: "emitResetButton",
+        },
+      ],
+    },
+  },
+];
+
+```
+
+**Form Item 配置项说明** <br>
+| 属性名 | 说明 | 类型 |
+| -------------- | -------- | ---------- |
+| label | 标签文本（可选属性） | string |
+| prop | model 的键名。 在定义了 validate、resetFields 的方法时，该属性是必填的（必须属性） | string |
+| model | v-model 值 | string |
+| component | 当前 Item 所需组件（必须属性） | input/select/datePicker/button/switch/checkbox/upload/cascader |
+| inputCompOptions/dateCompOptions/buttonCompOptions/selectCompOptions/switchCompOptions/checkboxCompOptions/uploadCompOptions/cascaderCompOptions | 对应上边 component 属性，是每个 Item 组件的配置项（必须属性） | inputCompOptions/dateCompOptions/buttonCompOptions/selectCompOptions/switchCompOptions/checkboxCompOptions/uploadCompOptions/cascaderCompOptions |
 
 ## Recommended IDE Setup
 

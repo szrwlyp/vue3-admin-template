@@ -18,7 +18,6 @@ import type { FormInstance, FormRules } from "element-plus";
  * @param rules 表单校验
  * @param formItemArr el-form-item form表单项
  * @param formData 表单数据
- * @param labelWidth label的宽度
  * @param dialogOperation dialog对话框类型（add,edit）
  *
  */
@@ -27,12 +26,15 @@ interface FormProp {
   rules?: FormRules;
   formItemArr: Array<Form.FormItemArrTypes>;
   formData: any;
-  labelWidth?: string | number;
   dialogOperation?: Form.DialogHandleType;
 }
-const props = defineProps<FormProp>();
 
-// console.log(props);
+const props = withDefaults(defineProps<FormProp>(), {
+  inline: false,
+  dialogOperation: "",
+});
+
+console.log(props);
 
 /**
  * 表单选项是否禁止使用（disabled）
@@ -107,6 +109,7 @@ defineExpose({
 </script>
 
 <template>
+  <div>{{ inline }}</div>
   <el-form
     :inline="inline"
     :rules="rules"
