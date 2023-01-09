@@ -83,7 +83,7 @@ import Form from "@/components/formComp/index.vue";
 | emit-form-submit | 表单提交方法 |
 | emit-reset-form | 表单重置方法 |
 
-#### form 表单 Item 配置项
+#### form 表单 Item 配置项（form-item-arr 属性值）
 
 ```
 配置项示例代码
@@ -231,6 +231,21 @@ import Form from "@/components/formComp/index.vue";
 | model | v-model 值（必须属性） | string |
 | component | 当前 Item 所需组件名称（必须属性） | input/select/datePicker/button/switch/checkbox/upload/cascader |
 | inputCompOptions, dateCompOptions, buttonCompOptions, selectCompOptions, switchCompOptions, checkboxCompOptions, uploadCompOptions, cascaderCompOptions | 对应上边 component 属性，是每个 Item 组件的配置项（必须属性） | inputCompOptions, dateCompOptions, buttonCompOptions, selectCompOptions, switchCompOptions, checkboxCompOptions, uploadCompOptions, cascaderCompOptions |
+
+**inputCompOptions（input 组件）配置参数** <br>
+
+| 属性名               | 说明                                                                                                       | 是否必须 | 类型                                                |
+| -------------------- | ---------------------------------------------------------------------------------------------------------- | -------- | --------------------------------------------------- |
+| placeholder          | 输入框占位文本                                                                                             | 是       | string                                              |
+| width                | 组件宽度                                                                                                   | 否       | string                                              |
+| type                 | 输入框类型                                                                                                 | 否       | string ("text"/"textarea"/"password")               |
+| maxlength            | 最大输入长度                                                                                               | 否       | string/number                                       |
+| inputSlot            | 插槽模式(包括复合类型插槽)                                                                                 | 否       | string                                              |
+| inputSlotContent     | 插槽内容                                                                                                   | 否       | string/Array<{value: number/string;label: string}>  |
+| inputKeyupEnterEvent | 键盘回车事件                                                                                               | 否       | "emitSubmitButton"                                  |
+| size                 | 输入框尺寸。只在 type 不为 'textarea' 时有效。                                                             | 否       | string                                              |
+| autosize             | textarea 高度是否自适应，仅 type 为 'textarea' 时生效。 可以接受一个对象，比如: { minRows: 2, maxRows: 6 } | 否       | boolean/object ({minRows: number;maxRows: number;}) |
+| showWordLimit        | 是否显示统计字数, 只在 type 为 'text' 或 'textarea' 的时候生效                                             | 否       | boolean                                             |
 
 ## Recommended IDE Setup
 

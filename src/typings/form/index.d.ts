@@ -35,12 +35,15 @@ declare namespace Form {
 
   /**
    * 输入框（input）组件选项配置
+   * @param placeholder 输入框占位文本
    * @param type 输入框类型
    * @param maxlength 最大输入长度
    * @param inputSlot 复合类型插槽
    * @param inputSlotContent 插槽内容
    * @param inputKeyupEnterEvent 键盘回车事件
    * @param size 输入框尺寸，只在 type 不为 'textarea' 时有效
+   * @param autosize textarea 高度是否自适应，仅 type 为 'textarea' 时生效。 可以接受一个对象，比如: { minRows: 2, maxRows: 6 }
+   * @param showWordLimit 是否显示统计字数, 只在 type 为 'text' 或 'textarea' 的时候生效
    */
   type inputType = "text" | "textarea" | "password";
   interface AutoSize {

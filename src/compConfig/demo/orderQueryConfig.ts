@@ -464,7 +464,7 @@ export const addOrEditItemConfigArr: Array<Form.FormItemArrTypes> = [
     component: "input",
     inputCompOptions: {
       type: "textarea",
-      placeholder: "请输入收货人",
+      placeholder: "备注信息",
       autosize: { minRows: 2, maxRows: 4 },
       maxlength: 30,
       showWordLimit: true,
