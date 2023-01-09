@@ -69,13 +69,13 @@ import Form from "@/components/formComp/index.vue";
 ```
 
 **Form 属性** <br>
-| 属性名 | 说明 | 类型 |
+| 属性名 | 说明 | 是否必须 |类型 |
 | -------------- | -------- | ---------- |
-| inline | 行内表单模式（可选属性） | boolean |
-| form-item-arr | form 表单 Item 配置项 | Array<Form.FormItemArrTypes> |
-| form-data | 表单数据 | any |
-| rules | 表单验证规则（可选属性） | FormRules |
-| dialogOperation | dialog 对话框类型（可选属性） | "add"/"edit" |
+| inline | 行内表单模式 | 否 | boolean |
+| form-item-arr | form 表单 Item 配置项 | 是 | Array<Form.FormItemArrTypes> |
+| form-data | 表单数据 | 是 | any |
+| rules | 表单验证规则 | 否 | FormRules |
+| dialogOperation | dialog 对话框类型 | 否 |"add"/"edit" |
 
 **Form 方法** <br>
 | 方法名 | 说明 |
@@ -224,13 +224,13 @@ import Form from "@/components/formComp/index.vue";
 ```
 
 **Form Item 配置项说明** <br>
-| 属性名 | 说明 | 类型 |
+| 属性名 | 说明 | 是否必须 | 类型 |
 | -------------- | -------- | ---------- |
-| label | 标签文本（可选属性） | string |
-| prop | model 的键名。 在定义了 validate、resetFields 的方法时，该属性是必填的（必须属性） | string |
-| model | v-model 值（必须属性） | string |
-| component | 当前 Item 所需组件名称（必须属性） | input/select/datePicker/button/switch/checkbox/upload/cascader |
-| inputCompOptions, dateCompOptions, buttonCompOptions, selectCompOptions, switchCompOptions, checkboxCompOptions, uploadCompOptions, cascaderCompOptions | 对应上边 component 属性，是每个 Item 组件的配置项（必须属性） | inputCompOptions, dateCompOptions, buttonCompOptions, selectCompOptions, switchCompOptions, checkboxCompOptions, uploadCompOptions, cascaderCompOptions |
+| label | 标签文本 | 否 | string |
+| prop | model 的键名。 在定义了 validate、resetFields 的方法时，该属性是必填的 | 是 |string |
+| model | v-model 值 | 是 |string |
+| component | 当前 Item 所需组件名称 | 是 |input/select/datePicker/button/switch/checkbox/upload/cascader |
+| inputCompOptions, dateCompOptions, buttonCompOptions, selectCompOptions, switchCompOptions, checkboxCompOptions, uploadCompOptions, cascaderCompOptions | 对应上边 component 属性，是每个 Item 组件的配置项 | 是 |inputCompOptions, dateCompOptions, buttonCompOptions, selectCompOptions, switchCompOptions, checkboxCompOptions, uploadCompOptions, cascaderCompOptions |
 
 **inputCompOptions（input 组件）配置参数** <br>
 
