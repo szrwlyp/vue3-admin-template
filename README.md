@@ -42,7 +42,7 @@
 │ ├── router // 路由文件
 │ ├── stores // 全局状态文件
 │ ├── styles // css 文件
-│ ├── types // 类型文件
+│ ├── typings // 类型文件
 │ ├── utils // 工具函数文件
 │ ├── views // 视图文件
 ├── .env.development //测试环境配置文件
@@ -232,7 +232,7 @@ import Form from "@/components/formComp/index.vue";
 | prop | model 的键名。 在定义了 validate、resetFields 的方法时，该属性是必填的 | 是 |string |
 | model | v-model 值 | 是 |string |
 | component | 当前 Item 所需组件名称 | 是 |input/select/datePicker/button/switch/checkbox/upload/cascader |
-| [inputCompOptions](#inputCompOptions), [dateCompOptions](#dateCompOptions), buttonCompOptions, selectCompOptions, switchCompOptions, checkboxCompOptions, uploadCompOptions, cascaderCompOptions | 对应上边 component 属性，是每个 Item 组件的配置项 | 是 |inputCompOptions, dateCompOptions, buttonCompOptions, selectCompOptions, switchCompOptions, checkboxCompOptions, uploadCompOptions, cascaderCompOptions |
+| [inputCompOptions](#inputCompOptions), [dateCompOptions](#dateCompOptions), [buttonCompOptions](#buttonCompOptions), selectCompOptions, switchCompOptions, checkboxCompOptions, uploadCompOptions, cascaderCompOptions | 对应上边 component 属性，是每个 Item 组件的配置项 | 是 |inputCompOptions, dateCompOptions, buttonCompOptions, selectCompOptions, switchCompOptions, checkboxCompOptions, uploadCompOptions, cascaderCompOptions |
 
 <a name="inputCompOptions"></a>
 **inputCompOptions（input 组件）配置参数** <br>
@@ -265,6 +265,37 @@ import Form from "@/components/formComp/index.vue";
 | endPlaceholder   | 范围选择时结束日期的占位内容                                                               | 否       | string                                                                                               |
 | shortcuts        | 设置快捷选项，需要传入数组对象                                                             | 否       | Array<{ text: string; value: Date/Function/Array<Date> }>                                            |
 | disabledDate     | 一个用来判断该日期是否被禁用的函数，接受一个 Date 对象作为参数。 应该返回一个 Boolean 值。 | 否       | Function                                                                                             |
+
+<a name="buttonCompOptions"></a>
+
+**buttonCompOptions（button 组件）配置参数**
+
+| 属性名    | 说明     | 是否必须 | 类型                                   |
+| --------- | -------- | -------- | -------------------------------------- |
+| buttonArr | 按钮数组 | 是       | Array<[ButtonOptions](#ButtonOptions)> |
+
+<a name='ButtonOptions'></a>
+
+**ButtonOptions 参数**
+| 属性名 | 说明 | 是否必须 | 类型 |
+| -------------- | -------- | ----------- | ---------- |
+| buttonText | 按钮文本 | 否 | string |
+| width | 按钮宽度 | 否 | string |
+| emitEvent | 按钮事件 | 是 | "emitSubmitButton"/"emitResetButton" |
+| size | 按钮尺寸 | 否 | "large"/"small" |
+| type | 按钮类型 | 否 | "primary"/"success"/ "info"/"warning"/"danger" |
+| plain | 是否为朴素按钮 | 否 | boolean |
+| text | 是否为文字按钮 | 否 | boolean |
+| bg | 是否显示文字按钮背景颜色 | 否 | boolean |
+| link | 是否为链接按钮 | 否 | boolean |
+| round | 是否为圆角按钮 | 否 | boolean |
+| circle | 是否为圆形按钮 | 否 | boolean |
+| loading | 是否为加载中状态 | 否 | boolean |
+| loadingIcon | 自定义加载中状态图标组件 | 否 | boolean |
+| disabled | 按钮是否为禁用状态 | 否 | boolean |
+| icon | 按钮图标组件 | 否 | string |
+| autoInsertSpace | 自动在两个中文字符之间插入空格 | 否 | boolean |
+| color | 自定义按钮颜色, 并自动计算 hover 和 active 触发后的颜色 | 否 | string |
 
 ## Recommended IDE Setup
 

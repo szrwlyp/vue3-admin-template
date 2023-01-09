@@ -103,7 +103,7 @@ declare namespace Form {
    * @param buttonArr 按钮数组
    */
   interface ButtonCompOptions {
-    buttonArr?: Array<ButtonOptions>;
+    buttonArr: Array<ButtonOptions>;
   }
   interface ButtonOptions extends Table.PublicButton {
     buttonText?: string;
