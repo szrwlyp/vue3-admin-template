@@ -232,8 +232,9 @@ import Form from "@/components/formComp/index.vue";
 | prop | model 的键名。 在定义了 validate、resetFields 的方法时，该属性是必填的 | 是 |string |
 | model | v-model 值 | 是 |string |
 | component | 当前 Item 所需组件名称 | 是 |input/select/datePicker/button/switch/checkbox/upload/cascader |
-| inputCompOptions, dateCompOptions, buttonCompOptions, selectCompOptions, switchCompOptions, checkboxCompOptions, uploadCompOptions, cascaderCompOptions | 对应上边 component 属性，是每个 Item 组件的配置项 | 是 |inputCompOptions, dateCompOptions, buttonCompOptions, selectCompOptions, switchCompOptions, checkboxCompOptions, uploadCompOptions, cascaderCompOptions |
+| [inputCompOptions](#inputCompOptions), [dateCompOptions](#dateCompOptions), buttonCompOptions, selectCompOptions, switchCompOptions, checkboxCompOptions, uploadCompOptions, cascaderCompOptions | 对应上边 component 属性，是每个 Item 组件的配置项 | 是 |inputCompOptions, dateCompOptions, buttonCompOptions, selectCompOptions, switchCompOptions, checkboxCompOptions, uploadCompOptions, cascaderCompOptions |
 
+<a name="inputCompOptions"></a>
 **inputCompOptions（input 组件）配置参数** <br>
 
 | 属性名               | 说明                                                                                                       | 是否必须 | 类型                                                |
@@ -248,6 +249,8 @@ import Form from "@/components/formComp/index.vue";
 | size                 | 输入框尺寸。只在 type 不为 'textarea' 时有效。                                                             | 否       | string                                              |
 | autosize             | textarea 高度是否自适应，仅 type 为 'textarea' 时生效。 可以接受一个对象，比如: { minRows: 2, maxRows: 6 } | 否       | boolean/object ({minRows: number;maxRows: number;}) |
 | showWordLimit        | 是否显示统计字数, 只在 type 为 'text' 或 'textarea' 的时候生效                                             | 否       | boolean                                             |
+
+<a name="dateCompOptions"></a>
 
 **DateCompOptions（date 组件）配置参数**
 
