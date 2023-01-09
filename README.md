@@ -70,7 +70,7 @@ import Form from "@/components/formComp/index.vue";
 
 **Form 属性** <br>
 | 属性名 | 说明 | 是否必须 |类型 |
-| -------------- | -------- | ---------- |
+| -------------- | -------- | ------------| ---------- |
 | inline | 行内表单模式 | 否 | boolean |
 | form-item-arr | form 表单 Item 配置项 | 是 | Array<Form.FormItemArrTypes> |
 | form-data | 表单数据 | 是 | any |
@@ -225,7 +225,7 @@ import Form from "@/components/formComp/index.vue";
 
 **Form Item 配置项说明** <br>
 | 属性名 | 说明 | 是否必须 | 类型 |
-| -------------- | -------- | ---------- |
+| -------------- | -------- | ---------- | ------------|
 | label | 标签文本 | 否 | string |
 | prop | model 的键名。 在定义了 validate、resetFields 的方法时，该属性是必填的 | 是 |string |
 | model | v-model 值 | 是 |string |
