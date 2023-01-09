@@ -126,7 +126,7 @@ declare namespace Form {
   interface SelectCompOptions {
     placeholder: string;
     width?: string;
-    selectList?: Array<SearchType>;
+    selectList: Array<SearchType>;
   }
 
   /**
@@ -144,7 +144,7 @@ declare namespace Form {
    */
   interface CheckboxType {
     label: string;
-    disabled: boolean;
+    disabled?: boolean;
     value: number | string;
   }
   interface CheckboxCompOptions {

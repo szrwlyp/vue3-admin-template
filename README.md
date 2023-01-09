@@ -232,7 +232,7 @@ import Form from "@/components/formComp/index.vue";
 | prop | model 的键名。 在定义了 validate、resetFields 的方法时，该属性是必填的 | 是 |string |
 | model | v-model 值 | 是 |string |
 | component | 当前 Item 所需组件名称 | 是 |input/select/datePicker/button/switch/checkbox/upload/cascader |
-| [inputCompOptions](#inputCompOptions), [dateCompOptions](#dateCompOptions), [buttonCompOptions](#buttonCompOptions), selectCompOptions, switchCompOptions, checkboxCompOptions, uploadCompOptions, cascaderCompOptions | 对应上边 component 属性，是每个 Item 组件的配置项 | 是 |inputCompOptions, dateCompOptions, buttonCompOptions, selectCompOptions, switchCompOptions, checkboxCompOptions, uploadCompOptions, cascaderCompOptions |
+| [inputCompOptions](#inputCompOptions), [dateCompOptions](#dateCompOptions), [buttonCompOptions](#buttonCompOptions), [selectCompOptions](#selectCompOptions), [switchCompOptions](#switchCompOptions), [checkboxCompOptions](#checkboxCompOptions), uploadCompOptions, cascaderCompOptions | 对应上边 component 属性，是每个 Item 组件的配置项 | 是 |inputCompOptions, dateCompOptions, buttonCompOptions, selectCompOptions, switchCompOptions, checkboxCompOptions, uploadCompOptions, cascaderCompOptions |
 
 <a name="inputCompOptions"></a>
 **inputCompOptions（input 组件）配置参数** <br>
@@ -296,6 +296,43 @@ import Form from "@/components/formComp/index.vue";
 | icon | 按钮图标组件 | 否 | string |
 | autoInsertSpace | 自动在两个中文字符之间插入空格 | 否 | boolean |
 | color | 自定义按钮颜色, 并自动计算 hover 和 active 触发后的颜色 | 否 | string |
+
+<a name='selectCompOptions'></a>
+
+**selectCompOptions（select 组件）配置参数**
+
+| 属性名      | 说明           | 是否必须 | 类型                                         |
+| ----------- | -------------- | -------- | -------------------------------------------- |
+| placeholder | 输入框占位文本 | 是       | string                                       |
+| width       | 组件宽度       | 否       | string                                       |
+| selectList  | 下拉框数据     | 是       | Array<{value: number/string;label: string;}> |
+
+<a name="switchCompOptions"></a>
+
+**switchCompOptions（switch 组件）配置参数**
+
+| 属性名         | 说明             | 是否必须 | 类型                      |
+| -------------- | ---------------- | -------- | ------------------------- |
+| switchOnColor  | 开关打开时的颜色 | 否       | string                    |
+| switchOffColor | 开关关闭时的颜色 | 否       | string                    |
+| size           | 开关大小         | 否       | "large"/"small"/"default" |
+
+<a name="checkboxCompOptions"></a>
+
+**checkboxCompOptions（checkbox 组件）配置参数**
+
+| 属性名      | 说明       | 是否必须 | 类型                |
+| ----------- | ---------- | -------- | ------------------- |
+| width       | 组件宽度   | 否       | string              |
+| checkboxArr | 多选框数组 | 否       | Array<CheckboxType> |
+
+###### CheckboxType
+
+| 属性名   | 说明       | 是否必须 | 类型          |
+| -------- | ---------- | -------- | ------------- |
+| label    | 多选框文本 | 是       | string        |
+| disabled | 是否禁用   | 否       | boolean       |
+| value    | 多选框值   | 是       | number/string |
 
 ## Recommended IDE Setup
 
