@@ -36,6 +36,7 @@ declare namespace Form {
   /**
    * 输入框（input）组件选项配置
    * @param placeholder 输入框占位文本
+   * @param width 组件宽度
    * @param type 输入框类型
    * @param maxlength 最大输入长度
    * @param inputSlot 复合类型插槽
@@ -66,6 +67,8 @@ declare namespace Form {
 
   /**
    * 日期组件选项配置
+   * @param placeholder 输入框占位文本
+   * @param width 组件宽度
    * @param type 显示类型
    * @param format  输入框格式
    * @param valueFormat  可选，绑定值的格式。 不指定则绑定值为 Date 对象

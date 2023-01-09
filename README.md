@@ -72,7 +72,7 @@ import Form from "@/components/formComp/index.vue";
 | 属性名 | 说明 | 是否必须 |类型 |
 | -------------- | -------- | ------------| ---------- |
 | inline | 行内表单模式 | 否 | boolean |
-| form-item-arr | form 表单 Item 配置项 | 是 | Array<Form.FormItemArrTypes> |
+| [form-item-arr](#form-item-arr) | form 表单 Item 配置项 | 是 | Array<Form.FormItemArrTypes> |
 | form-data | 表单数据 | 是 | any |
 | rules | 表单验证规则 | 否 | FormRules |
 | dialogOperation | dialog 对话框类型 | 否 |"add"/"edit" |
@@ -82,6 +82,8 @@ import Form from "@/components/formComp/index.vue";
 | -------------- | -------- |
 | emit-form-submit | 表单提交方法 |
 | emit-reset-form | 表单重置方法 |
+
+<a name="form-item-arr"></a>
 
 #### form 表单 Item 配置项（form-item-arr 属性值）
 
@@ -246,6 +248,20 @@ import Form from "@/components/formComp/index.vue";
 | size                 | 输入框尺寸。只在 type 不为 'textarea' 时有效。                                                             | 否       | string                                              |
 | autosize             | textarea 高度是否自适应，仅 type 为 'textarea' 时生效。 可以接受一个对象，比如: { minRows: 2, maxRows: 6 } | 否       | boolean/object ({minRows: number;maxRows: number;}) |
 | showWordLimit        | 是否显示统计字数, 只在 type 为 'text' 或 'textarea' 的时候生效                                             | 否       | boolean                                             |
+
+**DateCompOptions（date 组件）配置参数**
+
+| 属性名           | 说明                                                                                       | 是否必须 | 类型                                                                                                 |
+| ---------------- | ------------------------------------------------------------------------------------------ | -------- | ---------------------------------------------------------------------------------------------------- |
+| placeholder      | 输入框占位文本                                                                             | 是       | string                                                                                               |
+| width            | 组件宽度                                                                                   | 否       | string                                                                                               |
+| type             | 输入框类型                                                                                 | 否       | string ("year"/"month"/ "date"/"dates"/"datetime"/ "week"/"datetimerange"/ "daterange"/"monthrange") |
+| format           | 输入框格式                                                                                 | 否       | string                                                                                               |
+| valueFormat      | 绑定值的格式,不指定则绑定值为 Date 对象                                                    | 是       | string                                                                                               |
+| startPlaceholder | 范围选择时开始日期的占位内容                                                               | 否       | string                                                                                               |
+| endPlaceholder   | 范围选择时结束日期的占位内容                                                               | 否       | string                                                                                               |
+| shortcuts        | 设置快捷选项，需要传入数组对象                                                             | 否       | Array<{ text: string; value: Date/Function/Array<Date> }>                                            |
+| disabledDate     | 一个用来判断该日期是否被禁用的函数，接受一个 Date 对象作为参数。 应该返回一个 Boolean 值。 | 否       | Function                                                                                             |
 
 ## Recommended IDE Setup
 
