@@ -6,6 +6,7 @@
 - [文件目录介绍](#文件目录介绍)
 - [组件使用说明](#组件使用说明)
   - [Form 组件](#Form组件)
+  - [Table 组件](#Table组件)
 
 <a name="背景介绍"></a>
 
@@ -352,6 +353,36 @@ Form 表单数据示例代码
   goods_name: "",
   phone: "",
 }
+```
+
+<a name="Table组件"></a>
+
+### Table 组件
+
+```
+import Table from "@/components/tableComp/index.vue";
+
+<Table
+    ref="tableRef"
+    :table-column-arr="tableCloumnArr"
+    :table-data="tableData"
+    :table-options="tableConfigOptions"
+    :pagination="pagination"
+    @emit-selection-change="handleSelectionChange"
+    @emit-edit-operation="handleEditOperation"
+    @emit-delete-operation="handleDeleteOperation"
+    @emit-pagination-current-change="handleCurrentChange"
+    @emit-pagination-size-change="handleSizeChange"
+  >
+    <template #expand="{ expandData }">
+      <div style="margin-left: 100px">
+        <p>订单ID：{{ expandData.order_id }}</p>
+        <p>商品名称：{{ expandData.goods_name }}</p>
+        <p>收货人：{{ expandData.user_name }}</p>
+        <p>收货地址：{{ expandData.address }}</p>
+      </div>
+    </template>
+  </Table>
 ```
 
 ## Recommended IDE Setup
