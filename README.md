@@ -73,13 +73,13 @@ import Form from "@/components/formComp/index.vue";
 ```
 
 **Form 属性** <br>
-| 属性名 | 说明 | 是否必须 |类型 |
-| -------------- | -------- | ------------| ---------- |
+| 属性名 | 说明 | 是否必须 |类型 | 可选值 |
+| -------------- | -------- | ------------| ---------- | -------- |
 | inline | 行内表单模式 | 否 | boolean |
-| [form-item-arr](#form-item-arr) | form 表单 Item 配置项 | 是 | Array<Form.FormItemArrTypes> |
-| [form-data](#form-data) | 表单数据 | 是 | any |
-| rules | 表单验证规则 | 否 | FormRules |
-| dialogOperation | dialog 对话框类型 | 否 |"add"/"edit" |
+| [form-item-arr](#form-item-arr) | form 表单 Item 配置项 | 是 | Array | — |
+| [form-data](#form-data) | 表单数据 | 是 | any |— |
+| rules | 表单验证规则 | 否 | FormRules |— |
+| dialogOperation | dialog 对话框类型 | 否 | string | add/edit |
 
 **Form 方法** <br>
 | 方法名 | 说明 |
@@ -230,45 +230,45 @@ import Form from "@/components/formComp/index.vue";
 ```
 
 **Form Item 配置项说明** <br>
-| 属性名 | 说明 | 是否必须 | 类型 |
-| -------------- | -------- | ---------- | ------------|
-| label | 标签文本 | 否 | string |
-| prop | model 的键名。 在定义了 validate、resetFields 的方法时，该属性是必填的 | 是 |string |
-| model | v-model 值 | 是 |string |
-| component | 当前 Item 所需组件名称 | 是 |input/select/datePicker/button/switch/checkbox/upload/cascader |
-| [inputCompOptions](#inputCompOptions), [dateCompOptions](#dateCompOptions), [buttonCompOptions](#buttonCompOptions), [selectCompOptions](#selectCompOptions), [switchCompOptions](#switchCompOptions), [checkboxCompOptions](#checkboxCompOptions), uploadCompOptions, cascaderCompOptions | 对应上边 component 属性，是每个 Item 组件的配置项 | 是 |inputCompOptions, dateCompOptions, buttonCompOptions, selectCompOptions, switchCompOptions, checkboxCompOptions, uploadCompOptions, cascaderCompOptions |
+| 属性名 | 说明 | 是否必须 | 类型 |可选值|
+| -------------- | -------- | ---------- | ------------|---------|
+| label | 标签文本 | 否 | string |— |
+| prop | model 的键名。 在定义了 validate、resetFields 的方法时，该属性是必填的 | 是 |string |— |
+| model | v-model 值 | 是 |string |— |
+| component | 当前 Item 所需组件名称 | 是 |string | input/ select/ datePicker/ button/ switch/ checkbox/ upload/ cascader |
+| [inputCompOptions](#inputCompOptions), [dateCompOptions](#dateCompOptions), [buttonCompOptions](#buttonCompOptions), [selectCompOptions](#selectCompOptions), [switchCompOptions](#switchCompOptions), [checkboxCompOptions](#checkboxCompOptions), uploadCompOptions, cascaderCompOptions | 对应上边 component 属性，是每个 Item 组件的配置项 | 是 |string | inputCompOptions/ dateCompOptions/ buttonCompOptions/ selectCompOptions/ switchCompOptions/ checkboxCompOptions/ uploadCompOptions/ cascaderCompOptions |
 
 <a name="inputCompOptions"></a>
 **inputCompOptions（input 组件）配置参数** <br>
 
-| 属性名               | 说明                                                                                                       | 是否必须 | 类型                                                |
-| -------------------- | ---------------------------------------------------------------------------------------------------------- | -------- | --------------------------------------------------- |
-| placeholder          | 输入框占位文本                                                                                             | 是       | string                                              |
-| width                | 组件宽度                                                                                                   | 否       | string                                              |
-| type                 | 输入框类型                                                                                                 | 否       | string ("text"/"textarea"/"password")               |
-| maxlength            | 最大输入长度                                                                                               | 否       | string/number                                       |
-| inputSlot            | 插槽模式(包括复合类型插槽)                                                                                 | 否       | string                                              |
-| inputSlotContent     | 插槽内容                                                                                                   | 否       | string/Array<{value: number/string;label: string}>  |
-| inputKeyupEnterEvent | 键盘回车事件                                                                                               | 否       | "emitSubmitButton"                                  |
-| size                 | 输入框尺寸。只在 type 不为 'textarea' 时有效。                                                             | 否       | string                                              |
-| autosize             | textarea 高度是否自适应，仅 type 为 'textarea' 时生效。 可以接受一个对象，比如: { minRows: 2, maxRows: 6 } | 否       | boolean/object ({minRows: number;maxRows: number;}) |
-| showWordLimit        | 是否显示统计字数, 只在 type 为 'text' 或 'textarea' 的时候生效                                             | 否       | boolean                                             |
+| 属性名               | 说明                                                                                                       | 是否必须 | 类型           | 可选值                                                     |
+| -------------------- | ---------------------------------------------------------------------------------------------------------- | -------- | -------------- | ---------------------------------------------------------- |
+| placeholder          | 输入框占位文本                                                                                             | 是       | string         | —                                                          |
+| width                | 组件宽度                                                                                                   | 否       | string         | —                                                          |
+| type                 | 输入框类型                                                                                                 | 否       | string         | text/textarea/password                                     |
+| maxlength            | 最大输入长度                                                                                               | 否       | string/number  | —                                                          |
+| inputSlot            | 插槽模式(包括复合类型插槽)                                                                                 | 否       | string         | —                                                          |
+| inputSlotContent     | 插槽内容                                                                                                   | 否       | string/array   | array 是复合型 input,<{value: number/string;label: string> |
+| inputKeyupEnterEvent | 键盘回车事件                                                                                               | 否       | string         | emitSubmitButton                                           |
+| size                 | 输入框尺寸。只在 type 不为 'textarea' 时有效。                                                             | 否       | string         | —                                                          |
+| autosize             | textarea 高度是否自适应，仅 type 为 'textarea' 时生效。 可以接受一个对象，比如: { minRows: 2, maxRows: 6 } | 否       | boolean/object | {minRows: number;maxRows: number;}                         |
+| showWordLimit        | 是否显示统计字数, 只在 type 为 'text' 或 'textarea' 的时候生效                                             | 否       | boolean        | —                                                          |
 
 <a name="dateCompOptions"></a>
 
 **DateCompOptions（date 组件）配置参数**
 
-| 属性名           | 说明                                                                                       | 是否必须 | 类型                                                                                                 |
-| ---------------- | ------------------------------------------------------------------------------------------ | -------- | ---------------------------------------------------------------------------------------------------- |
-| placeholder      | 输入框占位文本                                                                             | 是       | string                                                                                               |
-| width            | 组件宽度                                                                                   | 否       | string                                                                                               |
-| type             | 输入框类型                                                                                 | 否       | string ("year"/"month"/ "date"/"dates"/"datetime"/ "week"/"datetimerange"/ "daterange"/"monthrange") |
-| format           | 输入框格式                                                                                 | 否       | string                                                                                               |
-| valueFormat      | 绑定值的格式,不指定则绑定值为 Date 对象                                                    | 是       | string                                                                                               |
-| startPlaceholder | 范围选择时开始日期的占位内容                                                               | 否       | string                                                                                               |
-| endPlaceholder   | 范围选择时结束日期的占位内容                                                               | 否       | string                                                                                               |
-| shortcuts        | 设置快捷选项，需要传入数组对象                                                             | 否       | Array<{ text: string; value: Date/Function/Array<Date> }>                                            |
-| disabledDate     | 一个用来判断该日期是否被禁用的函数，接受一个 Date 对象作为参数。 应该返回一个 Boolean 值。 | 否       | Function                                                                                             |
+| 属性名           | 说明                                                                                       | 是否必须 | 类型     | 可选值                                                                         |
+| ---------------- | ------------------------------------------------------------------------------------------ | -------- | -------- | ------------------------------------------------------------------------------ |
+| placeholder      | 输入框占位文本                                                                             | 是       | string   | —                                                                              |
+| width            | 组件宽度                                                                                   | 否       | string   | —                                                                              |
+| type             | 输入框类型                                                                                 | 否       | string   | year/ month/ date/ dates/ datetime/ week/ datetimerange/ daterange/ monthrange |
+| format           | 输入框格式                                                                                 | 否       | string   | —                                                                              |
+| valueFormat      | 绑定值的格式,不指定则绑定值为 Date 对象                                                    | 是       | string   | —                                                                              |
+| startPlaceholder | 范围选择时开始日期的占位内容                                                               | 否       | string   | —                                                                              |
+| endPlaceholder   | 范围选择时结束日期的占位内容                                                               | 否       | string   | —                                                                              |
+| shortcuts        | 设置快捷选项，需要传入数组对象                                                             | 否       | array    | {text:string;value:Date/Function/Array<Date>}                                  |
+| disabledDate     | 一个用来判断该日期是否被禁用的函数，接受一个 Date 对象作为参数。 应该返回一个 Boolean 值。 | 否       | Function | —                                                                              |
 
 <a name="buttonCompOptions"></a>
 
@@ -281,45 +281,45 @@ import Form from "@/components/formComp/index.vue";
 <a name='ButtonOptions'></a>
 
 **ButtonOptions 参数**
-| 属性名 | 说明 | 是否必须 | 类型 |
-| -------------- | -------- | ----------- | ---------- |
-| buttonText | 按钮文本 | 否 | string |
-| width | 按钮宽度 | 否 | string |
-| emitEvent | 按钮事件 | 是 | "emitSubmitButton"/"emitResetButton" |
-| size | 按钮尺寸 | 否 | "large"/"small" |
-| type | 按钮类型 | 否 | "primary"/"success"/ "info"/"warning"/"danger" |
-| plain | 是否为朴素按钮 | 否 | boolean |
-| text | 是否为文字按钮 | 否 | boolean |
-| bg | 是否显示文字按钮背景颜色 | 否 | boolean |
-| link | 是否为链接按钮 | 否 | boolean |
-| round | 是否为圆角按钮 | 否 | boolean |
-| circle | 是否为圆形按钮 | 否 | boolean |
-| loading | 是否为加载中状态 | 否 | boolean |
-| loadingIcon | 自定义加载中状态图标组件 | 否 | boolean |
-| disabled | 按钮是否为禁用状态 | 否 | boolean |
-| icon | 按钮图标组件 | 否 | string |
-| autoInsertSpace | 自动在两个中文字符之间插入空格 | 否 | boolean |
-| color | 自定义按钮颜色, 并自动计算 hover 和 active 触发后的颜色 | 否 | string |
+| 属性名 | 说明 | 是否必须 | 类型 | 可选值 |
+| -------------- | -------- | ----------- | ---------- | ------- |
+| buttonText | 按钮文本 | 否 | string | — |
+| width | 按钮宽度 | 否 | string | — |
+| emitEvent | 按钮事件 | 是 | string | emitSubmitButton/emitResetButton |
+| size | 按钮尺寸 | 否 | string | large/small |
+| type | 按钮类型 | 否 | string | primary/ success/ info/ warning/ danger |
+| plain | 是否为朴素按钮 | 否 | boolean | — |
+| text | 是否为文字按钮 | 否 | boolean | — |
+| bg | 是否显示文字按钮背景颜色 | 否 | boolean | — |
+| link | 是否为链接按钮 | 否 | boolean | — |
+| round | 是否为圆角按钮 | 否 | boolean | — |
+| circle | 是否为圆形按钮 | 否 | boolean | — |
+| loading | 是否为加载中状态 | 否 | boolean | — |
+| loadingIcon | 自定义加载中状态图标组件 | 否 | boolean | — |
+| disabled | 按钮是否为禁用状态 | 否 | boolean | — |
+| icon | 按钮图标组件 | 否 | string | — |
+| autoInsertSpace | 自动在两个中文字符之间插入空格 | 否 | boolean | — |
+| color | 自定义按钮颜色, 并自动计算 hover 和 active 触发后的颜色 | 否 | string | — |
 
 <a name='selectCompOptions'></a>
 
 **selectCompOptions（select 组件）配置参数**
 
-| 属性名      | 说明           | 是否必须 | 类型                                         |
-| ----------- | -------------- | -------- | -------------------------------------------- |
-| placeholder | 输入框占位文本 | 是       | string                                       |
-| width       | 组件宽度       | 否       | string                                       |
-| selectList  | 下拉框数据     | 是       | Array<{value: number/string;label: string;}> |
+| 属性名      | 说明           | 是否必须 | 类型   | 可选值                                |
+| ----------- | -------------- | -------- | ------ | ------------------------------------- |
+| placeholder | 输入框占位文本 | 是       | string | —                                     |
+| width       | 组件宽度       | 否       | string | —                                     |
+| selectList  | 下拉框数据     | 是       | array  | {value: number/string;label: string;} |
 
 <a name="switchCompOptions"></a>
 
 **switchCompOptions（switch 组件）配置参数**
 
-| 属性名         | 说明             | 是否必须 | 类型                      |
-| -------------- | ---------------- | -------- | ------------------------- |
-| switchOnColor  | 开关打开时的颜色 | 否       | string                    |
-| switchOffColor | 开关关闭时的颜色 | 否       | string                    |
-| size           | 开关大小         | 否       | "large"/"small"/"default" |
+| 属性名         | 说明             | 是否必须 | 类型   | 可选值                    |
+| -------------- | ---------------- | -------- | ------ | ------------------------- |
+| switchOnColor  | 开关打开时的颜色 | 否       | string | —                         |
+| switchOffColor | 开关关闭时的颜色 | 否       | string | —                         |
+| size           | 开关大小         | 否       | string | "large"/"small"/"default" |
 
 <a name="checkboxCompOptions"></a>
 
