@@ -5,6 +5,7 @@
 - [环境依赖](#环境依赖)
 - [文件目录介绍](#文件目录介绍)
 - [组件使用说明](#组件使用说明)
+  - [Form 组件](#Form组件)
 
 <a name="背景介绍"></a>
 
@@ -53,7 +54,9 @@
 
 ## 组件使用说明
 
-### Form 表单组件
+<a name="Form组件"></a>
+
+### Form 组件
 
 ```
 import Form from "@/components/formComp/index.vue";
