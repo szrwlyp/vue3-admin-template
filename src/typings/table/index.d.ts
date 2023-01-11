@@ -114,6 +114,7 @@ declare namespace Table {
    * 公共表格组件列（cloumn）接口
    * @param prop 字段名称 对应列内容的字段名
    * @param label 显示的标题
+   * @param sortable 对应列是否可以排序
    * @param component 转换所需内容的组件
    * @param compOptions 组件选项配置
    * @param align 对齐方式
@@ -121,7 +122,7 @@ declare namespace Table {
    * @param children 嵌套表头（多级表头）
    */
   interface TableCloumnArrTypes {
-    type?: string;
+    type?: "selection" | "index" | "expand";
     width?: string;
     prop?: string;
     label?: string;

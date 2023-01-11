@@ -17,6 +17,7 @@ import ColumnItemComp from "./columnItemComp.vue";
 /**
  * Props
  * @param tableData table数据
+ * @param tableOptions table参数配置
  * @param tableColumnArr table列配置数组
  * @param pagination 分页参数
  */
@@ -96,21 +97,12 @@ const selectionChange = (val: any) => {
   emits("emitSelectionChange", val);
 };
 
-// table 行数据操作
+// table 行数据操作（edit,delete）
 const tableEventSubject = tableEventSubject$.subscribe({
   next: ({ emitEventName, emitParams }: Table.TableEventEmit) => {
     emits(emitEventName, emitParams.index, deepClone(emitParams.row));
   },
 });
-// 修改行数据
-// const editOperation = (index: number, row: any) => {
-//   emits("emitEditOperation", index, deepClone(row));
-// };
-
-// 删除行数据
-// const deleteOperation = (index: number, row: any) => {
-//   emits("emitDeleteOperation", index, deepClone(row));
-// };
 
 /***************************************************** 分页 *********************************************/
 const paginationRef = ref();

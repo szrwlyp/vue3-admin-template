@@ -385,6 +385,56 @@ import Table from "@/components/tableComp/index.vue";
   </Table>
 ```
 
+**Table 属性** <br>
+
+| 属性名                                | 说明           | 是否必须 | 类型   |
+| ------------------------------------- | -------------- | -------- | ------ |
+| [table-column-arr](#table-column-arr) | 表格列数据配置 | 是       | array  |
+| table-data                            | table 数据     | 是       | array  |
+| [table-options](#table-options)       | table 参数配置 | 是       | object |
+| [pagination](#pagination)             | 分页参数配置   | 是       | object |
+
+**Table 方法** <br>
+
+| 方法名                         | 说明                                     |
+| ------------------------------ | ---------------------------------------- |
+| emit-selection-change          | 表格 type=selection 选中的数据列回调方法 |
+| emit-edit-operation            | 行数据编辑回调方法                       |
+| emit-delete-operation          | 行数据删除回调方法                       |
+| emit-pagination-current-change | current-page 改变时触发回调方法          |
+| emit-pagination-size-change    | page-size 改变时触发回调方法             |
+
+<a name="table-column-arr"></a>
+
+**table-column-arr 配置参数**
+
+| 属性名      | 说明                                                                                                                                               | 是否必须 | 类型           | 可选值                                                                     |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | -------------- | -------------------------------------------------------------------------- |
+| type        | 对应列的类型。 如果设置了 selection 则显示多选框； 如果设置了 index 则显示该行的索引（从 1 开始计算）； 如果设置了 expand 则显示为一个可展开的按钮 | 否       | Array          | selection/ index/ expand                                                   |
+| width       | 对应列的宽度。默认 auto                                                                                                                            | 否       | string         | —                                                                          |
+| prop        | 字段名称。对应列内容的字段名                                                                                                                       | 否       | string         | —                                                                          |
+| label       | 表头显示的标题                                                                                                                                     | 否       | string         | —                                                                          |
+| sortable    | 对应列是否可以排序                                                                                                                                 | 否       | boolean/string | —                                                                          |
+| component   | 列数据展示组件（图片，类型，时间戳等等都可按相应的子组件展示）                                                                                     | 否       | string         | imageFormat/ typeFormat/ dateFormat/ buttonFormat/ expandComp/ defaultComp |
+| compOptions | 对应 component 属性值子组件选项配置                                                                                                                | 否       | object         | —                                                                          |
+| align       | 列对齐方式                                                                                                                                         | 否       | string         | left/center/right                                                          |
+| fixed       | 列是否固定在左侧或者右侧。 true 表示固定在左侧                                                                                                     | 否       | string         | boolean/left/right                                                         |
+| children    | 嵌套表头（多级表头）                                                                                                                               | 否       | array          | —                                                                          |
+
+<a name="table-options"></a>
+
+**table-options 配置参数**
+
+<a name="pagination"></a>
+
+**pagination 分页配置参数**
+
+| 属性名      | 说明       | 是否必须 | 类型   | 可选值 |
+| ----------- | ---------- | -------- | ------ | ------ |
+| total       | 总条数     | 是       | number | —      |
+| currentPage | 当前页     | 是       | number | —      |
+| pageSize    | 当前页条数 | 是       | number | —      |
+
 ## Recommended IDE Setup
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
