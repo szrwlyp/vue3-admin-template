@@ -73,7 +73,7 @@ import Form from "@/components/formComp/index.vue";
 | -------------- | -------- | ------------| ---------- |
 | inline | 行内表单模式 | 否 | boolean |
 | [form-item-arr](#form-item-arr) | form 表单 Item 配置项 | 是 | Array<Form.FormItemArrTypes> |
-| form-data | 表单数据 | 是 | any |
+| [form-data](#form-data) | 表单数据 | 是 | any |
 | rules | 表单验证规则 | 否 | FormRules |
 | dialogOperation | dialog 对话框类型 | 否 |"add"/"edit" |
 
@@ -321,10 +321,10 @@ import Form from "@/components/formComp/index.vue";
 
 **checkboxCompOptions（checkbox 组件）配置参数**
 
-| 属性名      | 说明       | 是否必须 | 类型                |
-| ----------- | ---------- | -------- | ------------------- |
-| width       | 组件宽度   | 否       | string              |
-| checkboxArr | 多选框数组 | 否       | Array<CheckboxType> |
+| 属性名      | 说明       | 是否必须 | 类型                  |
+| ----------- | ---------- | -------- | --------------------- |
+| width       | 组件宽度   | 否       | string                |
+| checkboxArr | 多选框数组 | 否       | Array<{CheckboxType}> |
 
 ###### CheckboxType
 
@@ -333,6 +333,23 @@ import Form from "@/components/formComp/index.vue";
 | label    | 多选框文本 | 是       | string        |
 | disabled | 是否禁用   | 否       | boolean       |
 | value    | 多选框值   | 是       | number/string |
+
+<a name="form-data"></a>
+
+#### Form 表单数据（form-data 属性值）
+
+**_对象中的属性名与 form-item-arr 配置中的 model 属性必须一致。_**
+
+```
+Form 表单数据示例代码
+{
+  order_id: "",
+  order_type: "",
+  order_date: "",
+  goods_name: "",
+  phone: "",
+}
+```
 
 ## Recommended IDE Setup
 

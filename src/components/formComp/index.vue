@@ -109,7 +109,6 @@ defineExpose({
 </script>
 
 <template>
-  <div>{{ inline }}</div>
   <el-form
     :inline="inline"
     :rules="rules"
