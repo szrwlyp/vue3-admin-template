@@ -76,7 +76,7 @@ import Form from "@/components/formComp/index.vue";
 | 属性名 | 说明 | 是否必须 |类型 | 可选值 |
 | -------------- | -------- | ------------| ---------- | -------- |
 | inline | 行内表单模式 | 否 | boolean |
-| [form-item-arr](#form-item-arr) | form 表单 Item 配置项 | 是 | Array | — |
+| [form-item-arr](#form-item-arr) | form 表单 Item 配置项 | 是 | array | — |
 | [form-data](#form-data) | 表单数据 | 是 | any |— |
 | rules | 表单验证规则 | 否 | FormRules |— |
 | dialogOperation | dialog 对话框类型 | 否 | string | add/edit |
@@ -276,7 +276,7 @@ import Form from "@/components/formComp/index.vue";
 
 | 属性名    | 说明     | 是否必须 | 类型                                   |
 | --------- | -------- | -------- | -------------------------------------- |
-| buttonArr | 按钮数组 | 是       | Array<[ButtonOptions](#ButtonOptions)> |
+| buttonArr | 按钮数组 | 是       | array<[ButtonOptions](#ButtonOptions)> |
 
 <a name='ButtonOptions'></a>
 
@@ -328,7 +328,7 @@ import Form from "@/components/formComp/index.vue";
 | 属性名      | 说明       | 是否必须 | 类型                  |
 | ----------- | ---------- | -------- | --------------------- |
 | width       | 组件宽度   | 否       | string                |
-| checkboxArr | 多选框数组 | 否       | Array<{CheckboxType}> |
+| checkboxArr | 多选框数组 | 否       | array<{CheckboxType}> |
 
 ###### CheckboxType
 
@@ -410,7 +410,7 @@ import Table from "@/components/tableComp/index.vue";
 
 | 属性名      | 说明                                                                                                                                               | 是否必须 | 类型           | 可选值                                                                     |
 | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | -------------- | -------------------------------------------------------------------------- |
-| type        | 对应列的类型。 如果设置了 selection 则显示多选框； 如果设置了 index 则显示该行的索引（从 1 开始计算）； 如果设置了 expand 则显示为一个可展开的按钮 | 否       | Array          | selection/ index/ expand                                                   |
+| type        | 对应列的类型。 如果设置了 selection 则显示多选框； 如果设置了 index 则显示该行的索引（从 1 开始计算）； 如果设置了 expand 则显示为一个可展开的按钮 | 否       | array          | selection/ index/ expand                                                   |
 | width       | 对应列的宽度。默认 auto                                                                                                                            | 否       | string         | —                                                                          |
 | prop        | 字段名称。对应列内容的字段名                                                                                                                       | 否       | string         | —                                                                          |
 | label       | 表头显示的标题                                                                                                                                     | 否       | string         | —                                                                          |

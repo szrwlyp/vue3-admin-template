@@ -167,3 +167,34 @@ export const sleep = (time: number) => {
     }, time)
   );
 };
+
+/**
+ * 字符串转Uint8Array（不支持小程序）
+ * @param {*} input 需要转换的字符串
+ * @returns 返回 arrayBuffer
+ */
+export const str2Uint8Array = (input: any) => {
+  const encoder = new TextEncoder();
+  const view = encoder.encode(input);
+  return view.buffer;
+};
+
+/**
+ * Uint8Array转字符串
+ * @param input Uint8Array
+ * @returns 返回 字符串
+ */
+export const ab2str = (
+  input:
+    | ArrayBuffer
+    | Uint8Array
+    | Int8Array
+    | Uint16Array
+    | Int16Array
+    | Uint32Array
+    | Int32Array,
+  outputEncoding: string = "utf8"
+): string => {
+  const decoder = new TextDecoder(outputEncoding);
+  return decoder.decode(input);
+};

@@ -8,7 +8,19 @@ import {
   nextTick,
   computed,
 } from "vue";
-import { of, skip, take, toArray, map } from "rxjs";
+import {
+  of,
+  skip,
+  take,
+  toArray,
+  map,
+  bufferCount,
+  tap,
+  concatMap,
+  delay,
+  mergeMap,
+  filter,
+} from "rxjs";
 import { Delete, Plus } from "@element-plus/icons-vue";
 import Table from "@/components/tableComp/index.vue";
 import Form from "@/components/formComp/index.vue";
@@ -20,6 +32,9 @@ import {
   resetData,
   deepClone,
   randomRange,
+  str2Uint8Array,
+  ab2str,
+  sleep,
 } from "@/utils/index";
 import { u_ElMessageBoxConfig, u_ElMessage } from "@/utils/elementPlus";
 import { useOrderDataStore } from "@/stores/orderData";
@@ -273,6 +288,65 @@ const handleDialogConfirm = async () => {
 
 onMounted(() => {
   handleTableData();
+
+  let menuList = [
+    {
+      id: 1,
+      pid: 0,
+      title: "控制台",
+      code: "deskboard",
+    },
+    {
+      id: 2,
+      pid: 0,
+      title: "用户管理",
+      code: "user",
+    },
+    {
+      id: 3,
+      pid: 2,
+      title: "用户列表",
+      code: "list",
+    },
+    {
+      id: 4,
+      pid: 3,
+      title: "查看",
+      code: "view",
+    },
+    {
+      id: 5,
+      pid: 3,
+      title: "删除",
+      code: "delete",
+    },
+    {
+      id: 6,
+      pid: 0,
+      title: "系统设置",
+      code: "system",
+    },
+    {
+      id: 7,
+      pid: 6,
+      title: "日志管理",
+      code: "logs",
+    },
+  ];
+
+  of(...menuList)
+    .pipe(
+      filter((item) => {
+        return item.pid == 0;
+      }),
+      mergeMap((fItem: any) => {
+        console.log(fItem);
+        fItem.children = [];
+        return of(...menuList).pipe(filter((item) => item.pid === fItem.id));
+      }),
+      tap((x) => console.warn(x))
+    )
+    .subscribe();
 });
 
 onUnmounted(() => {});
