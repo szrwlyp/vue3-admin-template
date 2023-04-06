@@ -15,8 +15,8 @@ const router = useRouter();
 const route = useRoute();
 
 const formData = ref({
-  userName: "",
-  password: "",
+  userName: "admin",
+  password: "wirush666",
 });
 
 // 需要查询的item
@@ -110,7 +110,7 @@ const handleFormSubmit = () => {
       userInfoStore.setUserData(data);
 
       let redirect = route.query.redirect as string;
-      router.push(redirect ? redirect : "/");
+      router.replace(redirect ? redirect : "/");
     },
     error: (err) => {
       console.log(err);
