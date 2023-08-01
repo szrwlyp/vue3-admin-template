@@ -7,6 +7,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    2: typeof import('./src/components/lazyImgComp/index 2.vue')['default']
     ButtonFormat: typeof import('./src/components/tableComp/comp/buttonFormat.vue')['default']
     CascaderComp: typeof import('./src/components/formComp/comp/cascaderComp.vue')['default']
     ColumnComp: typeof import('./src/components/tableComp/columnComp.vue')['default']
@@ -69,8 +70,12 @@ declare module '@vue/runtime-core' {
     IconEcosystem: typeof import('./src/components/icons/IconEcosystem.vue')['default']
     IconSupport: typeof import('./src/components/icons/IconSupport.vue')['default']
     IconTooling: typeof import('./src/components/icons/IconTooling.vue')['default']
+    ImageComp: typeof import('./src/components/imageComp/index.vue')['default']
     ImageFormat: typeof import('./src/components/tableComp/comp/imageFormat.vue')['default']
     Img: typeof import('./src/components/publicTable/img.vue')['default']
+    LazyImgComp: typeof import('./src/components/lazyImgComp/index.vue')['default']
+    Loading: typeof import('./src/components/lazyImgComp/loading.vue')['default']
+    LoadingComp: typeof import('./src/components/imageComp/loadingComp.vue')['default']
     MyDialog: typeof import('./src/components/myDialog/index.vue')['default']
     MyForm: typeof import('./src/components/myForm/index.vue')['default']
     MySearch: typeof import('./src/components/mySearch/index.vue')['default']
