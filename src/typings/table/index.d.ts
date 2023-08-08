@@ -109,6 +109,7 @@ declare namespace Table {
    */
   interface tableCompOptions {
     operationButtonArr?: Array<operationButtonArr>;
+    columnTypeArr?: Array<an>;
   }
   /**
    * 公共表格组件列（cloumn）接口

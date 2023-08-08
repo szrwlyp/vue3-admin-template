@@ -44,16 +44,12 @@ import {
   formItemConfigArr,
   tableCloumnConfigArr,
   addOrEditItemConfigArr,
-  addOrEditFulesConfig,
   tableConfig,
 } from "@/compConfig/demo/orderQueryConfig";
 
 const orderDataStore = useOrderDataStore();
 
 const { set_orderData } = storeToRefs(orderDataStore);
-
-// 依赖注入
-provide("searchFormType", searchFormTypeConfig);
 
 /************************************************* 查询 ******************************************* */
 // 查询条件
@@ -242,9 +238,6 @@ const addOrEditData = ref<addOrEditDataType>({
   goods_class: ["guide", "disciplines", "consistency"],
 });
 
-// 表单校验
-const addOrEditFules = reactive(addOrEditFulesConfig);
-
 // 需要添加或修改的item
 const addOrEditItemArr = reactive(addOrEditItemConfigArr);
 
@@ -421,7 +414,6 @@ onUnmounted(() => {});
       <div style="padding-left: 50px">
         <Form
           ref="dialogFormRef"
-          :rules="addOrEditFules"
           :form-item-arr="addOrEditItemArr"
           :form-data="addOrEditData"
           :dialog-operation="dialogOperation"

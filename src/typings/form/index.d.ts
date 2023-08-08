@@ -31,6 +31,7 @@ declare namespace Form {
     checkboxCompOptions?: CheckboxCompOptions;
     uploadCompOptions?: UploadCompOptions;
     cascaderCompOptions?: CascaderCompOptions;
+    rules?: Array<any>;
   }
 
   /**

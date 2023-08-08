@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { inject, computed, toRefs } from "vue";
+import { computed, toRefs } from "vue";
 
 interface Props {
   columnRow: any;
@@ -7,16 +7,14 @@ interface Props {
   columnCompOptions: Table.TableCloumnArrTypes;
 }
 const props = defineProps<Props>();
-const { prop } = toRefs<Table.TableCloumnArrTypes>(props.columnCompOptions);
-
-const columnType = inject("searchFormType") as any;
+const { prop, compOptions } = toRefs<Table.TableCloumnArrTypes>(
+  props.columnCompOptions
+);
 
 const typeStr = computed(() => {
-  const { label } = columnType.find(
-    (item: any) =>
-      item.value ===
-      props.columnRow[prop?.value as keyof typeof props.columnRow]
-  );
+  const { label } = compOptions?.value?.columnTypeArr?.find(
+    (item) => item.value === props.columnRow.order_type
+  ) ?? { label: "数据错误" };
   return label;
 });
 </script>

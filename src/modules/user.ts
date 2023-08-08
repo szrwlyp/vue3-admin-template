@@ -9,7 +9,8 @@ import { HttpParameter, HttpMethod } from "@/http/httpTypes";
 export function userLogin(data: any): Observable<any> {
   const params: HttpParameter = {
     data,
-    url: "/adm/loginService/login",
+    url: "/api/system/login",
+    // url: "/adm/loginService/login",
     method: HttpMethod.POST,
   };
   return new Http(params).request().pipe();

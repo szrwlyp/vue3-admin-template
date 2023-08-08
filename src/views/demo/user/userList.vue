@@ -2,29 +2,55 @@
 import { ref, reactive } from "vue";
 import Form from "@/components/formComp/index.vue";
 import Table from "@/components/tableComp/index.vue";
+import Dialog from "@/components/dialogComp/index.vue";
 import Divider from "@/components/dividerComp.vue";
 import { Delete, Plus } from "@element-plus/icons-vue";
 import {
   tableCloumnConfigArr,
   formItemConfigArr,
   tableConfig,
-  composableParams,
-} from "@/compConfig/demo/orderActiveConfig";
+  addOrEditItemConfigArr,
+} from "@/compConfig/demo/userListConfig";
 import { useCURD } from "@/composables/view_crud";
+const composableParams = {
+  queryParam: ref({
+    name: "",
+    type: "",
+    deviceid: "",
+  }),
+  dialogFormData: ref({
+    id: "",
+    user_name: "",
+    age: "",
+    address: "",
+  }),
 
+  url: {
+    list: "/magic/test/getTestUserList",
+    delete: "/magic/test/delete",
+    add: "/magic/test/add",
+    edit: "/magic/test/edit",
+  },
+};
 const {
-  pagination,
   tableData,
+  pagination,
   queryParam,
   isDisabledBatchDelete,
   handleCurrentChange,
   handleSizeChange,
   handleFormSubmit,
   handleFormReset,
+  dialogVisible,
+  dialogOperation,
+  dialogFormRef,
+  dialogFormData,
   handleSelectionChange,
   handleDeleteOperation,
   handleEditOperation,
   handleAddOperation,
+  handleDialogCancel,
+  handleDialogConfirm,
 } = useCURD(composableParams);
 
 // 需要查询的item
@@ -33,6 +59,8 @@ const formItemArr = reactive(formItemConfigArr);
 const tableCloumnArr = reactive(tableCloumnConfigArr);
 
 const tableConfigOptions = reactive(tableConfig);
+// 需要添加或修改的item
+const addOrEditItemArr = reactive(addOrEditItemConfigArr);
 </script>
 
 <template>
@@ -74,6 +102,25 @@ const tableConfigOptions = reactive(tableConfig);
     @emit-pagination-current-change="handleCurrentChange"
     @emit-pagination-size-change="handleSizeChange"
   />
+
+  <!-- 弹框 -->
+  <Dialog
+    :dialog-visible="dialogVisible"
+    :dislog-title="dialogOperation"
+    @emit-dialog-cancel="handleDialogCancel"
+    @emit-dialog-confirm="handleDialogConfirm"
+  >
+    <template #form>
+      <div style="padding-left: 50px">
+        <Form
+          ref="dialogFormRef"
+          :form-item-arr="addOrEditItemArr"
+          :form-data="dialogFormData"
+          :dialog-operation="dialogOperation"
+        />
+      </div>
+    </template>
+  </Dialog>
 </template>
 
 <style lang="scss" scoped></style>

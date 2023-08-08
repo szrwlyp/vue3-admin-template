@@ -43,6 +43,28 @@ const routerArrar = [
     },
     children: [
       {
+        path: "user",
+        redirect: "/demo/user/userList",
+        name: "User",
+        meta: {
+          title: "用户管理",
+          icon: "Notification",
+          showChildren: true,
+        },
+        children: [
+          {
+            path: "userList",
+            name: "userList",
+            component: () => import("@/views/demo/user/userList.vue"),
+            meta: {
+              title: "用户列表",
+              icon: "Notification",
+              requiresAuth: true,
+            },
+          },
+        ],
+      },
+      {
         path: "order",
         redirect: "/demo/order/orderQuery",
         name: "Order",

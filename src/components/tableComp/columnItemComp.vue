@@ -15,7 +15,8 @@ const props = defineProps<Props>();
 const { label, align, fixed, component, children, prop } = toRefs(
   props.columnOptions
 );
-// console.log(props?.columnOptions);
+// console.log(children);
+// console.warn(props.columnOptions);
 
 // 动态组件集合
 const componentMap = new Map([
@@ -49,7 +50,7 @@ const componentName = computed(() => (componentName: any) => {
     /> -->
 
   <!-- 多级表头 -->
-  <template v-if="children?.length">
+  <template v-if="children && children?.length">
     <el-table-column v-bind="columnOptions">
       <ColumnItemComp
         v-for="(item, index) in children"

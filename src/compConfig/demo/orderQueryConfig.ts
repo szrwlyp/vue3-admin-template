@@ -69,20 +69,7 @@ export const formItemConfigArr: Array<Form.FormItemArrTypes> = [
     component: "select",
     selectCompOptions: {
       placeholder: "请选择订单类型",
-      selectList: [
-        {
-          value: 1,
-          label: "已发货",
-        },
-        {
-          value: 2,
-          label: "已确认",
-        },
-        {
-          value: 3,
-          label: "待发货",
-        },
-      ],
+      selectList: searchFormTypeConfig,
     },
   },
   {
@@ -181,6 +168,9 @@ export const tableCloumnConfigArr: Array<Table.TableCloumnArrTypes> = [
     prop: "order_type",
     label: "订单类型",
     component: "typeFormat",
+    compOptions: {
+      columnTypeArr: searchFormTypeConfig,
+    },
   },
   {
     prop: "order_date",
@@ -250,12 +240,21 @@ export const addOrEditItemConfigArr: Array<Form.FormItemArrTypes> = [
       width: "300px",
       type: "text",
     },
+    rules: [
+      {
+        type: "string",
+        required: true,
+        message: "请填写订单ID",
+        trigger: "blur",
+      },
+    ],
   },
   {
     label: "订单类型",
     prop: "order_type",
     model: "order_type",
     component: "select",
+    rules: [{ required: true, message: "请选择订单类型", trigger: "change" }],
     selectCompOptions: {
       placeholder: "请选择订单类型",
       width: "300px",
@@ -281,6 +280,14 @@ export const addOrEditItemConfigArr: Array<Form.FormItemArrTypes> = [
     model: "order_date",
     component: "datePicker",
     disableEditData: true,
+    rules: [
+      {
+        type: "date",
+        required: true,
+        message: "请选择订单日期",
+        trigger: "change",
+      },
+    ],
     dateCompOptions: {
       placeholder: "请选择日期",
       width: "300px",
@@ -472,31 +479,6 @@ export const addOrEditItemConfigArr: Array<Form.FormItemArrTypes> = [
     },
   },
 ];
-
-/**
- * 表单验证
- */
-export const addOrEditFulesConfig: FormRules = {
-  order_id: [
-    {
-      type: "string",
-      required: true,
-      message: "请填写订单ID",
-      trigger: "blur",
-    },
-  ],
-  order_type: [
-    { required: true, message: "请选择订单类型", trigger: "change" },
-  ],
-  order_date: [
-    {
-      type: "date",
-      required: true,
-      message: "请选择订单日期",
-      trigger: "change",
-    },
-  ],
-};
 
 /**
  * 表格配置

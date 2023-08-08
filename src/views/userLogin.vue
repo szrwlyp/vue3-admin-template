@@ -15,8 +15,8 @@ const router = useRouter();
 const route = useRoute();
 
 const formData = ref({
-  userName: "admin",
-  password: "wirush666",
+  userName: "",
+  password: "",
 });
 
 // 需要查询的item
@@ -92,22 +92,23 @@ const buttonLoading = (loading: boolean) => {
 };
 const handleFormSubmit = () => {
   console.log(formData);
-  let { userName: username, password: pwd } = formData.value;
+  let { userName: username, password } = formData.value;
   buttonLoading(true);
-  userLogin({ username, pwd }).subscribe({
+  userLogin({ username, password }).subscribe({
     next: async (res) => {
-      let { code, msg, data } = res;
+      console.log(res);
+      let { code, message, success, result } = res;
 
-      if (code != 0) {
-        u_ElMessage({ type: "error", message: msg });
+      if (code != 200) {
+        u_ElMessage({ type: "error", message });
         buttonLoading(false);
         return;
       }
       u_ElMessage({ type: "success", message: "登录成功" });
       await sleep(1000);
       buttonLoading(false);
-      set_sessionIdStore.value = data.sessionid;
-      userInfoStore.setUserData(data);
+      set_sessionIdStore.value = result.token;
+      userInfoStore.setUserData(result.userInfo);
 
       let redirect = route.query.redirect as string;
       router.replace(redirect ? redirect : "/");

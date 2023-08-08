@@ -48,7 +48,7 @@ export default class Http {
       headers: header,
       body: {
         ...data,
-        sessionid: set_sessionIdStore.value ?? "",
+        // sessionid: set_sessionIdStore.value ?? "",
       },
     }).pipe(
       tap((res) => {
@@ -58,7 +58,7 @@ export default class Http {
         iif(
           () => status === 200,
           iif(
-            () => response.code === 0,
+            () => response.code === 200,
             of(response),
             // of(response)
             defer(() => {

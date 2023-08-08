@@ -15,7 +15,6 @@ import type { FormInstance, FormRules } from "element-plus";
 /**
  * FormProp
  * @param inline 行内表单
- * @param rules 表单校验
  * @param formItemArr el-form-item form表单项
  * @param formData 表单数据
  * @param dialogOperation dialog对话框类型（add,edit）
@@ -23,7 +22,6 @@ import type { FormInstance, FormRules } from "element-plus";
  */
 interface FormProp {
   inline?: boolean;
-  rules?: FormRules;
   formItemArr: Array<Form.FormItemArrTypes>;
   formData: any;
   dialogOperation?: Form.DialogHandleType;
@@ -74,6 +72,18 @@ const submitForm = async (formEl: FormInstance | undefined) => {
   });
 };
 
+// rules
+const mergeRules = () => {
+  let rulesObj = {};
+  props.formItemArr.forEach((item, index) => {
+    if (item.rules && item.rules.length) {
+      rulesObj = Object.assign(rulesObj, { [item.prop]: item.rules });
+    }
+  });
+  return rulesObj;
+};
+const rules = mergeRules();
+
 // 重置
 const ruleFormRef = ref<FormInstance>();
 const resetForm = (formEl: FormInstance | undefined) => {
@@ -102,6 +112,7 @@ const componentName = computed(() => (componentName: any) => {
 const test = () => {
   console.log("aaa");
 };
+onMounted(() => {});
 // 导出子组件的属性或方法
 defineExpose({
   ruleFormRef,
