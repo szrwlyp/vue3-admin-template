@@ -60,12 +60,12 @@ echarts.use([
  */
 interface Props {
   chartBaseOptions?: chartBaseOptionsType;
-  setOptions: Object;
+  // setOptions: Object;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   chartBaseOptions: () => {
-    return { width: 300, height: 300, chartsId: "test" };
+    return { width: 300, height: 300, chartsId: "test", setOptions: {} };
   },
 });
 
@@ -78,7 +78,7 @@ console.log(width, height);
 
 // 监听setOptions并更新
 watch(
-  () => props.setOptions,
+  () => props.chartBaseOptions.setOptions,
   (newValue, oldValue) => {
     console.log(newValue);
     initChart();
@@ -92,7 +92,7 @@ const initChart = () => {
   charts.value = echarts.init(
     document.getElementById(chartsId.value) as HTMLElement
   );
-  charts.value.setOption(props.setOptions);
+  charts.value.setOption(props.chartBaseOptions.setOptions);
 };
 
 onMounted(() => {

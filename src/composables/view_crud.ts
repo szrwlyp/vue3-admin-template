@@ -99,14 +99,8 @@ export function useCURD(params: Params) {
   const getQueryParams = () => {
     const params = Object.assign(
       {
-        appPage: "",
-        deviceid: "",
-        name: "",
-        observedCustomer: "",
-        openid: "",
         page: pagination.value.currentPage,
         pageSize: pagination.value.pageSize,
-        type: "",
       },
       queryParam.value
     );

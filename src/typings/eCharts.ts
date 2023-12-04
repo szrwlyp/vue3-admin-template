@@ -8,4 +8,5 @@ export interface chartBaseOptionsType {
   width?: number;
   height?: number;
   chartsId: string;
+  setOptions: object;
 }

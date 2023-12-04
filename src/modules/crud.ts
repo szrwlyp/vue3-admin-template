@@ -7,7 +7,7 @@ import { HttpParameter, HttpMethod } from "@/http/httpTypes";
  */
 //  https://www.vpascare.com/adm/dataStatsService/getWxAccessLogs
 export function getTableRequest(data: any): Observable<any> {
-  const params: HttpParameter = { ...data, method: HttpMethod.GET };
+  const params: HttpParameter = { ...data, method: HttpMethod.POST };
   return new Http(params).request();
 }
 
@@ -15,6 +15,18 @@ export function getTableRequest(data: any): Observable<any> {
  * 添加数据
  */
 export function addActive(data: any): Observable<any> {
-  const params: HttpParameter = { ...data, method: HttpMethod.POST };
+  const params: HttpParameter = {
+    ...data,
+    method: HttpMethod.POST,
+  };
+  return new Http(params).request();
+}
+
+export function getEchartData(data: any): Observable<any> {
+  const params: HttpParameter = {
+    ...data,
+    method: HttpMethod.GET,
+    url: "/api/v1/user/getTodayEcharts",
+  };
   return new Http(params).request();
 }

@@ -90,9 +90,11 @@ declare module '@vue/runtime-core' {
     RouterView: typeof import('vue-router')['RouterView']
     Table: typeof import('./src/components/table.vue')['default']
     TableComp: typeof import('./src/components/tableComp/index.vue')['default']
+    TestComp: typeof import('./src/components/testComp.vue')['default']
     TheWelcome: typeof import('./src/components/TheWelcome.vue')['default']
     TypeFormat: typeof import('./src/components/tableComp/comp/typeFormat.vue')['default']
     Undefined: typeof import('./src/components/index.vue')['default']
+    VerificationCodeComp: typeof import('./src/components/formComp/comp/verificationCodeComp.vue')['default']
     WelcomeItem: typeof import('./src/components/WelcomeItem.vue')['default']
   }
   export interface ComponentCustomProperties {

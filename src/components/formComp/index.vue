@@ -10,6 +10,7 @@ import Switch from "./comp/elSwitchComp.vue";
 import Checkbox from "./comp/elCheckboxComp.vue";
 import Upload from "./comp/elUploadComp.vue";
 import Cascader from "./comp/cascaderComp.vue";
+import VerificationCode from "./comp/verificationCodeComp.vue";
 import type { FormInstance, FormRules } from "element-plus";
 
 /**
@@ -102,6 +103,10 @@ const componentMap = new Map([
   ["checkbox", { name: "checkbox", tabComp: markRaw(Checkbox) }],
   ["upload", { name: "upload", tabComp: markRaw(Upload) }],
   ["cascader", { name: "cascader", tabComp: markRaw(Cascader) }],
+  [
+    "verificationCode",
+    { name: "verificationCode", tabComp: markRaw(VerificationCode) },
+  ],
 ]);
 
 // 动态组件name

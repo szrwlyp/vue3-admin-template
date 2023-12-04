@@ -5,14 +5,16 @@ import { storeToRefs } from "pinia";
 import Charts from "@/components/eCharts/index.vue";
 import type { chartBaseOptionsType } from "@/typings/eCharts";
 import { demo1, demo2 } from "@/modules/eCharts/demo";
+import { chartBaseOptionsTest, handlerEcharts } from "@/modules/eCharts/demo2";
 
 const chartBaseOptions = reactive<chartBaseOptionsType>({
   width: 500,
   height: 500,
   chartsId: "test",
+  setOptions: demo1,
 });
 
-const setOptionsData = ref(demo1);
+handlerEcharts();
 
 const randomUserName = () => {
   let userNameArr: Array<string> = [
@@ -44,9 +46,6 @@ onMounted(() => {
         data: [100, 20, 36, 10, 10, 20],
       },
     ];
-    // setOptionsData.value = demo2;
-
-    console.log(setOptionsData.value);
   }, 2000);
 
   let url = "https://www.baidu.com?name=zhangsan&age=20";
@@ -59,12 +58,11 @@ onMounted(() => {
 
 <template>
   <div>
-    <Charts
-      :chartBaseOptions="chartBaseOptions"
-      :setOptions="setOptionsData"
-    ></Charts>
+    <Charts :chartBaseOptions="chartBaseOptions"></Charts>
 
     <div @click="randomUserName">点击</div>
+
+    <Charts :chartBaseOptions="chartBaseOptionsTest"></Charts>
   </div>
 </template>
 

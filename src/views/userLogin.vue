@@ -6,10 +6,13 @@ import { userLogin } from "@/modules/user";
 import { sleep } from "@/utils/index";
 import { u_ElMessage } from "@/utils/elementPlus";
 import { useUserInfoStore } from "@/stores/userInfo";
+import { useTool } from "@/composables/tool";
 import { useRoute, useRouter } from "vue-router";
 import { storeToRefs } from "pinia";
 const userInfoStore = useUserInfoStore();
 const { set_sessionIdStore } = storeToRefs(userInfoStore);
+
+const { resetCode } = useTool();
 
 const router = useRouter();
 const route = useRoute();
@@ -17,6 +20,7 @@ const route = useRoute();
 const formData = ref({
   userName: "",
   password: "",
+  code: "",
 });
 
 // 需要查询的item
@@ -33,6 +37,7 @@ const formItemArr = ref<Array<Form.FormItemArrTypes>>([
       inputKeyupEnterEvent: "emitSubmitButton",
       size: "large",
     },
+    rules: [{ required: true, message: "请输入用户名", trigger: "blur" }],
   },
   {
     prop: "password",
@@ -46,6 +51,19 @@ const formItemArr = ref<Array<Form.FormItemArrTypes>>([
       inputKeyupEnterEvent: "emitSubmitButton",
       size: "large",
     },
+    rules: [{ required: true, message: "请输入密码", trigger: "blur" }],
+  },
+  {
+    prop: "code",
+    model: "code",
+    component: "verificationCode",
+    inputCompOptions: {
+      placeholder: "验证码",
+      type: "text",
+      inputSlot: "prefix",
+      inputSlotContent: "Lock",
+    },
+    rules: [{ required: true, message: "请输入验证码", trigger: "blur" }],
   },
   {
     prop: "",
@@ -72,12 +90,6 @@ const formItemArr = ref<Array<Form.FormItemArrTypes>>([
   },
 ]);
 
-// 表单校验
-const loginRules = reactive<FormRules>({
-  userName: [{ required: true, message: "请输入用户名", trigger: "blur" }],
-  password: [{ required: true, message: "请输入密码", trigger: "blur" }],
-});
-
 const buttonLoading = (loading: boolean) => {
   formItemArr.value.map((item) => {
     if (item.component === "button") {
@@ -92,16 +104,24 @@ const buttonLoading = (loading: boolean) => {
 };
 const handleFormSubmit = () => {
   console.log(formData);
-  let { userName: username, password } = formData.value;
+  let { userName: username, password, code } = formData.value;
   buttonLoading(true);
-  userLogin({ username, password }).subscribe({
+  userLogin({ username, password, code }).subscribe({
     next: async (res) => {
       console.log(res);
-      let { code, message, success, result } = res;
+      let {
+        code,
+        message,
+        success,
+        data: { result },
+      } = res;
 
       if (code != 200) {
         u_ElMessage({ type: "error", message });
         buttonLoading(false);
+        if (code === 400) {
+          resetCode();
+        }
         return;
       }
       u_ElMessage({ type: "success", message: "登录成功" });
@@ -137,7 +157,6 @@ onMounted(() => {
         <Form
           ref="formRef"
           :inline="false"
-          :rules="loginRules"
           :form-item-arr="formItemArr"
           :form-data="formData"
           @emit-form-submit="handleFormSubmit"

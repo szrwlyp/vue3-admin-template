@@ -16,7 +16,8 @@ declare namespace Form {
     | "switch"
     | "checkbox"
     | "upload"
-    | "cascader";
+    | "cascader"
+    | "verificationCode";
   interface FormItemArrTypes {
     label?: string;
     prop: string;

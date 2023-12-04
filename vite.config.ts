@@ -56,9 +56,9 @@ export default defineConfig({
     host: "0.0.0.0",
     proxy: {
       "/api": {
-        // target: "http://192.168.31.4:8080",
+        target: "http://localhost:3000/",
         // target: "https://vpascare.com",
-        target: "https://wb.chaochuang.com.cn",
+        // target: "https://wb.chaochuang.com.cn",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },

@@ -26,10 +26,10 @@ const composableParams = {
   }),
 
   url: {
-    list: "/magic/test/getTestUserList",
-    delete: "/magic/test/delete",
-    add: "/magic/test/add",
-    edit: "/magic/test/edit",
+    list: "/api/user",
+    delete: "",
+    add: "",
+    edit: "",
   },
 };
 const {
