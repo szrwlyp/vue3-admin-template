@@ -16,6 +16,7 @@
     "default-passive-events": "^2.0.0",
     "echarts": "^5.4.0",
     "element-plus": "^2.2.20",
+    "ol": "^9.2.4",
     "pinia": "^2.0.23",
     "rxjs": "^7.5.6",
     "vconsole": "^3.14.7",
